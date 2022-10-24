@@ -1,0 +1,50 @@
+{"_id":{"$oid":"6356ac51be4f4f8da3311d08"},"name":"белый шоколад","explorationDate":{"$date":{"$numberLong":"-25198004"}},"inStock":"113 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d0c"},"name":"клубничная глазурь","explorationDate":{"$date":{"$numberLong":"-25197999"}},"inStock":"188 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d10"},"name":"клубничная глазурь","explorationDate":{"$date":{"$numberLong":"-25197996"}},"inStock":"27 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d14"},"name":"разрыхлитель","explorationDate":{"$date":{"$numberLong":"-25197998"}},"inStock":"24 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d18"},"name":"молочный шоколад","explorationDate":{"$date":{"$numberLong":"-25197995"}},"inStock":"26 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d1c"},"name":"молочный шоколад","explorationDate":{"$date":{"$numberLong":"-25197996"}},"inStock":"69 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d20"},"name":"сахар","explorationDate":{"$date":{"$numberLong":"-25197998"}},"inStock":"145 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d24"},"name":"белый шоколад","explorationDate":{"$date":{"$numberLong":"-25198002"}},"inStock":"125 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d28"},"name":"разрыхлитель","explorationDate":{"$date":{"$numberLong":"-25197998"}},"inStock":"102 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d2c"},"name":"молочный шоколад","explorationDate":{"$date":{"$numberLong":"-25198002"}},"inStock":"154 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d30"},"name":"лимонная кислота","explorationDate":{"$date":{"$numberLong":"-25197998"}},"inStock":"43 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d34"},"name":"белый шоколад","explorationDate":{"$date":{"$numberLong":"-25198004"}},"inStock":"45 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d38"},"name":"молочный шоколад","explorationDate":{"$date":{"$numberLong":"-25198000"}},"inStock":"152 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d3c"},"name":"мука","explorationDate":{"$date":{"$numberLong":"-25198001"}},"inStock":"165 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d40"},"name":"белый шоколад","explorationDate":{"$date":{"$numberLong":"-25197996"}},"inStock":"114 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d44"},"name":"разрыхлитель","explorationDate":{"$date":{"$numberLong":"-25198003"}},"inStock":"101 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d48"},"name":"белый шоколад","explorationDate":{"$date":{"$numberLong":"-25198004"}},"inStock":"159 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d4c"},"name":"яйцо куриное","explorationDate":{"$date":{"$numberLong":"-25197999"}},"inStock":"136 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d50"},"name":"разрыхлитель","explorationDate":{"$date":{"$numberLong":"-25197996"}},"inStock":"17 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d54"},"name":"клубничная глазурь","explorationDate":{"$date":{"$numberLong":"-25197998"}},"inStock":"102 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d58"},"name":"молоко","explorationDate":{"$date":{"$numberLong":"-25198002"}},"inStock":"130 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d5c"},"name":"молоко","explorationDate":{"$date":{"$numberLong":"-25198001"}},"inStock":"75 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d60"},"name":"клубничная глазурь","explorationDate":{"$date":{"$numberLong":"-25197999"}},"inStock":"57 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d64"},"name":"разрыхлитель","explorationDate":{"$date":{"$numberLong":"-25197998"}},"inStock":"111 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d68"},"name":"сахар","explorationDate":{"$date":{"$numberLong":"-25198003"}},"inStock":"60 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d6c"},"name":"молоко","explorationDate":{"$date":{"$numberLong":"-25197997"}},"inStock":"155 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d70"},"name":"лимонная кислота","explorationDate":{"$date":{"$numberLong":"-25198001"}},"inStock":"133 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d74"},"name":"лимонная кислота","explorationDate":{"$date":{"$numberLong":"-25198004"}},"inStock":"16 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d78"},"name":"яйцо куриное","explorationDate":{"$date":{"$numberLong":"-25198001"}},"inStock":"84 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d7c"},"name":"молоко","explorationDate":{"$date":{"$numberLong":"-25197995"}},"inStock":"122 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d80"},"name":"мука","explorationDate":{"$date":{"$numberLong":"-25197996"}},"inStock":"103 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d84"},"name":"мука","explorationDate":{"$date":{"$numberLong":"-25197999"}},"inStock":"11 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d88"},"name":"белый шоколад","explorationDate":{"$date":{"$numberLong":"-25198003"}},"inStock":"191 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d8c"},"name":"сахар","explorationDate":{"$date":{"$numberLong":"-25197995"}},"inStock":"154 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d90"},"name":"клубничная глазурь","explorationDate":{"$date":{"$numberLong":"-25198004"}},"inStock":"169 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d94"},"name":"мука","explorationDate":{"$date":{"$numberLong":"-25197997"}},"inStock":"116 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d98"},"name":"яйцо куриное","explorationDate":{"$date":{"$numberLong":"-25197995"}},"inStock":"73 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d9c"},"name":"молочный шоколад","explorationDate":{"$date":{"$numberLong":"-25197999"}},"inStock":"167 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311da0"},"name":"молочный шоколад","explorationDate":{"$date":{"$numberLong":"-25198004"}},"inStock":"127 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311da4"},"name":"клубничная глазурь","explorationDate":{"$date":{"$numberLong":"-25198000"}},"inStock":"152 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311da8"},"name":"молоко","explorationDate":{"$date":{"$numberLong":"-25198000"}},"inStock":"32 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dac"},"name":"мука","explorationDate":{"$date":{"$numberLong":"-25198002"}},"inStock":"152 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311db0"},"name":"клубничная глазурь","explorationDate":{"$date":{"$numberLong":"-25197997"}},"inStock":"64 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311db4"},"name":"мука","explorationDate":{"$date":{"$numberLong":"-25197996"}},"inStock":"124 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311db8"},"name":"белый шоколад","explorationDate":{"$date":{"$numberLong":"-25198003"}},"inStock":"24 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dbc"},"name":"мука","explorationDate":{"$date":{"$numberLong":"-25198003"}},"inStock":"7 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dc0"},"name":"молоко","explorationDate":{"$date":{"$numberLong":"-25198004"}},"inStock":"37 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dc4"},"name":"молочный шоколад","explorationDate":{"$date":{"$numberLong":"-25197996"}},"inStock":"126 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dc8"},"name":"разрыхлитель","explorationDate":{"$date":{"$numberLong":"-25197996"}},"inStock":"193 кг"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dcc"},"name":"молоко","explorationDate":{"$date":{"$numberLong":"-25198000"}},"inStock":"94 кг"}

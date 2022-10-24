@@ -1,0 +1,110 @@
+{"_id":{"$oid":"6356ac51be4f4f8da3311cfc"},"name":" Фёдор","lastname":"Царско","jobTitle":"менеджер","salary":[46909],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311cfd"},"name":" Евгений","lastname":"Кальченко","jobTitle":"менеджер","salary":[30128],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311cfe"},"name":" Ирина","lastname":"Сагадеев","jobTitle":"менеджер","salary":[52672],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311cff"},"name":" Марк","lastname":"Халимдаров","jobTitle":"менеджер","salary":[67782],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d00"},"name":" Анастасия","lastname":"Жеглов","jobTitle":"менеджер","salary":[26911],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d01"},"name":" Леонид","lastname":"Халимдаров","jobTitle":"менеджер","salary":[27355],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d02"},"name":" Елизавета","lastname":"Сыропоршнева","jobTitle":"менеджер","salary":[57169],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d03"},"name":" Варвара","lastname":"Чукреева","jobTitle":"менеджер","salary":[27315],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d04"},"name":" Александр","lastname":"Дубин","jobTitle":"менеджер","salary":[29909],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d05"},"name":" Камила","lastname":"Гадолина","jobTitle":"менеджер","salary":[55057],"manager":null}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d06"},"name":" Любовь","lastname":"Ян","jobTitle":"повар","salary":[32364],"manager":" Фёдор Царско"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d07"},"name":" Святослав","lastname":"Рязанцева","jobTitle":"продавец","salary":[22267],"manager":" Фёдор Царско"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d0a"},"name":" Василий","lastname":"Гладков","jobTitle":"повар","salary":[61375],"manager":" Фёдор Царско"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d0b"},"name":" Даниил","lastname":"Медведков","jobTitle":"уборщик","salary":[41033],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d0e"},"name":" Даниил","lastname":"Большакова","jobTitle":"повар","salary":[27902],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d0f"},"name":" Александра","lastname":"Абдулова","jobTitle":"уборщик","salary":[69960],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d12"},"name":" Макар ","lastname":"Мартьянова","jobTitle":"повар","salary":[57395],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d13"},"name":" Любовь","lastname":"Чукреева","jobTitle":"продавец","salary":[44750],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d16"},"name":" Арина","lastname":"Другаль","jobTitle":"повар","salary":[29066],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d17"},"name":" Каролина","lastname":"Царско","jobTitle":"продавец","salary":[33299],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d1a"},"name":" Богдан","lastname":"Дюженкова","jobTitle":"повар","salary":[51336],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d1b"},"name":" Софья","lastname":"Сурков","jobTitle":"уборщик","salary":[22392],"manager":" Варвара Чукреева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d1e"},"name":" Таисия","lastname":"Ермилов","jobTitle":"повар","salary":[34870],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d1f"},"name":" Алиса","lastname":"Аводков","jobTitle":"уборщик","salary":[66366],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d22"},"name":" Анна","lastname":"Карантирова","jobTitle":"повар","salary":[34569],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d23"},"name":" Максим","lastname":"Блок","jobTitle":"продавец","salary":[32028],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d26"},"name":" Тимофей","lastname":"Цой","jobTitle":"повар","salary":[31288],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d27"},"name":" Вячеслав","lastname":"Толмачёва","jobTitle":"продавец","salary":[54064],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d2a"},"name":" Тимур","lastname":"Ермилов","jobTitle":"повар","salary":[27076],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d2b"},"name":" Ирина","lastname":"Коченкова","jobTitle":"уборщик","salary":[31150],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d2e"},"name":" Адам","lastname":"Толмачёва","jobTitle":"повар","salary":[23624],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d2f"},"name":" Ярослава","lastname":"Раскатов","jobTitle":"уборщик","salary":[47633],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d32"},"name":" Виктория","lastname":"Энгалычев","jobTitle":"повар","salary":[57181],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d33"},"name":" Дмитрий","lastname":"Ухова","jobTitle":"продавец","salary":[64617],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d36"},"name":" Павел","lastname":"Чукреева","jobTitle":"повар","salary":[56932],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d37"},"name":" Али","lastname":"Кологреева","jobTitle":"продавец","salary":[41029],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d3a"},"name":" Макар ","lastname":"Соломахин","jobTitle":"повар","salary":[38294],"manager":" Марк Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d3b"},"name":" Ярослава","lastname":"Курдина","jobTitle":"продавец","salary":[26549],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d3e"},"name":" Платон","lastname":"Бурда","jobTitle":"повар","salary":[42181],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d3f"},"name":" Евгения","lastname":"Фролова","jobTitle":"продавец","salary":[30703],"manager":" Леонид Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d42"},"name":" Максим","lastname":"Соломахин","jobTitle":"повар","salary":[35347],"manager":" Варвара Чукреева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d43"},"name":" Сергей","lastname":"Блок","jobTitle":"уборщик","salary":[44131],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d46"},"name":" Артемий","lastname":"Фролова","jobTitle":"повар","salary":[24968],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d47"},"name":" Сафия","lastname":"Караев","jobTitle":"продавец","salary":[69740],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d4a"},"name":" Софья","lastname":"Пайков","jobTitle":"повар","salary":[39901],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d4b"},"name":" Арина","lastname":"Зёмина","jobTitle":"продавец","salary":[54486],"manager":" Леонид Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d4e"},"name":" Юлия","lastname":"Халимдаров","jobTitle":"повар","salary":[39895],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d4f"},"name":" Ольга","lastname":"Яхненко","jobTitle":"уборщик","salary":[64894],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d52"},"name":" Карина","lastname":"Якушов","jobTitle":"повар","salary":[36008],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d53"},"name":" Карина","lastname":"Ремизов","jobTitle":"продавец","salary":[48583],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d56"},"name":" Ольга","lastname":"Коченкова","jobTitle":"повар","salary":[24862],"manager":" Леонид Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d57"},"name":" Пётр","lastname":"Толмачёва","jobTitle":"продавец","salary":[52492],"manager":" Фёдор Царско"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d5a"},"name":" Михаил","lastname":"Большакова","jobTitle":"повар","salary":[37738],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d5b"},"name":" София","lastname":"Дюженков","jobTitle":"уборщик","salary":[38208],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d5e"},"name":" Макар ","lastname":"Чукреева","jobTitle":"повар","salary":[68870],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d5f"},"name":" Павел","lastname":"Аводков","jobTitle":"продавец","salary":[41171],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d62"},"name":"Матвей","lastname":"Ухова","jobTitle":"повар","salary":[21145],"manager":" Леонид Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d63"},"name":" Григорий","lastname":"Калганов","jobTitle":"уборщик","salary":[57814],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d66"},"name":" Николай","lastname":"Нагибина","jobTitle":"повар","salary":[60858],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d67"},"name":" Артемий","lastname":"Якушов","jobTitle":"продавец","salary":[59587],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d6a"},"name":" Стефан","lastname":"Гадолина","jobTitle":"повар","salary":[39756],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d6b"},"name":" Варвара","lastname":"Дружинин","jobTitle":"продавец","salary":[20768],"manager":" Варвара Чукреева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d6e"},"name":" Сергей","lastname":"Раскатов","jobTitle":"повар","salary":[24531],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d6f"},"name":" Георгий","lastname":"Панкина","jobTitle":"продавец","salary":[41949],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d72"},"name":" Кирилл","lastname":"Бурда","jobTitle":"повар","salary":[23606],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d73"},"name":" Данила","lastname":"Кочеткова","jobTitle":"продавец","salary":[65436],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d76"},"name":" Игорь","lastname":"Панкина","jobTitle":"повар","salary":[34281],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d77"},"name":" Ника","lastname":"Янушкене","jobTitle":"продавец","salary":[26652],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d7a"},"name":" Екатерина","lastname":"Халимдаров","jobTitle":"повар","salary":[52946],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d7b"},"name":" Василиса","lastname":"Кальченко","jobTitle":"уборщик","salary":[44321],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d7e"},"name":" Назар","lastname":"Карантирова","jobTitle":"повар","salary":[69510],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d7f"},"name":" Давид","lastname":"Тимирёв","jobTitle":"уборщик","salary":[44942],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d82"},"name":" Пётр","lastname":"Раскатов","jobTitle":"повар","salary":[42205],"manager":" Фёдор Царско"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d83"},"name":"Матвей","lastname":"Казанькова","jobTitle":"уборщик","salary":[26573],"manager":" Варвара Чукреева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d86"},"name":" Али","lastname":"Другаль","jobTitle":"повар","salary":[57374],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d87"},"name":" Лев","lastname":"Мартьянова","jobTitle":"уборщик","salary":[41678],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d8a"},"name":" Каролина","lastname":"Вьялицына","jobTitle":"повар","salary":[46598],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d8b"},"name":" Роман","lastname":"Шипулин","jobTitle":"уборщик","salary":[67146],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d8e"},"name":" Георгий","lastname":"Потрепалов","jobTitle":"повар","salary":[64997],"manager":" Марк Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d8f"},"name":" Каролина","lastname":"Дворникова","jobTitle":"уборщик","salary":[34201],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d92"},"name":" Кира","lastname":"Ремизов","jobTitle":"повар","salary":[69310],"manager":" Фёдор Царско"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d93"},"name":" Ксения","lastname":"Кочеткова","jobTitle":"уборщик","salary":[60778],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d96"},"name":" Анна","lastname":"Карантирова","jobTitle":"повар","salary":[26894],"manager":" Фёдор Царско"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d97"},"name":" Таисия","lastname":"Пайков","jobTitle":"уборщик","salary":[30738],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d9a"},"name":" София","lastname":"Ремизов","jobTitle":"повар","salary":[49608],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d9b"},"name":" Евгения","lastname":"Другаль","jobTitle":"уборщик","salary":[62220],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d9e"},"name":" Роберт","lastname":"Раскатов","jobTitle":"повар","salary":[65478],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311d9f"},"name":" Ксения","lastname":"Халимдаров","jobTitle":"продавец","salary":[52544],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311da2"},"name":" Тимофей","lastname":"Сыропоршнева","jobTitle":"повар","salary":[43418],"manager":" Варвара Чукреева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311da3"},"name":" Милана","lastname":"Энгалычев","jobTitle":"продавец","salary":[47678],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311da6"},"name":" Александра","lastname":"Панькива","jobTitle":"повар","salary":[27435],"manager":" Варвара Чукреева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311da7"},"name":" Василий","lastname":"Курдина","jobTitle":"уборщик","salary":[37273],"manager":" Леонид Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311daa"},"name":" Вероника","lastname":"Сагадеев","jobTitle":"повар","salary":[29461],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dab"},"name":" Кира","lastname":"Чукреева","jobTitle":"продавец","salary":[54478],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dae"},"name":" Алексей","lastname":"Соломахин","jobTitle":"повар","salary":[69805],"manager":" Леонид Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311daf"},"name":" Максим","lastname":"Дарбиняна","jobTitle":"уборщик","salary":[67947],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311db2"},"name":" Елизавета","lastname":"Невшупа","jobTitle":"повар","salary":[62084],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311db3"},"name":" Андрей","lastname":"Якушов","jobTitle":"уборщик","salary":[50780],"manager":" Марк Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311db6"},"name":" Даниил","lastname":"Северинова","jobTitle":"повар","salary":[30972],"manager":" Евгений Кальченко"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311db7"},"name":" Мелисса","lastname":"Абоймова","jobTitle":"уборщик","salary":[63491],"manager":" Камила Гадолина"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dba"},"name":" Таисия","lastname":"Толмачёва","jobTitle":"повар","salary":[53019],"manager":" Варвара Чукреева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dbb"},"name":" Елизавета","lastname":"Щередин","jobTitle":"продавец","salary":[37957],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dbe"},"name":" Мелисса","lastname":"Якушов","jobTitle":"повар","salary":[52051],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dbf"},"name":" Василиса","lastname":"Драгомирова","jobTitle":"уборщик","salary":[61641],"manager":" Ирина Сагадеев"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dc2"},"name":" Агата","lastname":"Канаев","jobTitle":"повар","salary":[29936],"manager":" Анастасия Жеглов"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dc3"},"name":" Игорь","lastname":"Коченкова","jobTitle":"продавец","salary":[49090],"manager":" Елизавета Сыропоршнева"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dc6"},"name":" Софья","lastname":"Лопатина","jobTitle":"повар","salary":[62769],"manager":" Александр Дубин"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dc7"},"name":" Никита","lastname":"Ермилов","jobTitle":"уборщик","salary":[49107],"manager":" Леонид Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dca"},"name":" Аделина","lastname":"Фролова","jobTitle":"повар","salary":[43268],"manager":" Леонид Халимдаров"}
+{"_id":{"$oid":"6356ac51be4f4f8da3311dcb"},"name":" Ульяна","lastname":"Сучков","jobTitle":"уборщик","salary":[54284],"manager":" Варвара Чукреева"}
