@@ -30,7 +30,7 @@ namespace project.Controllers
             var orders = ordersServise.Get(id);
             if (orders == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Заказ с ID = {id} не найден ");
             }
             return orders;
         }
@@ -50,7 +50,7 @@ namespace project.Controllers
             var existingOrders = ordersServise.Get(id);
             if (orders == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Заказ с ID = {id} не найден ");
             }
             ordersServise.Update(id, orders);
             return NoContent();
@@ -63,10 +63,10 @@ namespace project.Controllers
             var orders = ordersServise.Get(id);
             if (orders == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Заказ с ID = {id} не найден ");
             }
             ordersServise.Remove(orders.Id);
-            return Ok($"Торт с ID = {id} удален ");
+            return Ok($"Заказ с ID = {id} удален ");
         }
     }
 }

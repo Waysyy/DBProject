@@ -30,7 +30,7 @@ namespace project.Controllers
             var ingredients = ingredientsServise.Get(id);
             if (ingredients == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Ингредиент с ID = {id} не найден ");
             }
             return ingredients;
         }
@@ -50,7 +50,7 @@ namespace project.Controllers
             var existingIngredients = ingredientsServise.Get(id);
             if (ingredients == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Ингредиент с ID = {id} не найден ");
             }
             ingredientsServise.Update(id, ingredients);
             return NoContent();
@@ -63,10 +63,10 @@ namespace project.Controllers
             var ingredients = ingredientsServise.Get(id);
             if (ingredients == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Ингредиент с ID = {id} не найден ");
             }
             ingredientsServise.Remove(ingredients.Id);
-            return Ok($"Торт с ID = {id} удален ");
+            return Ok($"Ингредиент с ID = {id} удален ");
         }
     }
 }

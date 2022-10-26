@@ -30,7 +30,7 @@ namespace project.Controllers
             var clients = clientsServise.Get(id);
             if (clients == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Клиент с ID = {id} не найден ");
             }
             return clients;
         }
@@ -50,7 +50,7 @@ namespace project.Controllers
             var existingClients = clientsServise.Get(id);
             if (clients == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Клиент с ID = {id} не найден ");
             }
             clientsServise.Update(id, clients);
             return NoContent();
@@ -63,10 +63,10 @@ namespace project.Controllers
             var clients = clientsServise.Get(id);
             if (clients == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Клиент с ID = {id} не найден ");
             }
             clientsServise.Remove(clients.Id);
-            return Ok($"Торт с ID = {id} удален ");
+            return Ok($"Клиент с ID = {id} удален ");
         }
     }
 }

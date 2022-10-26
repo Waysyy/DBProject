@@ -30,7 +30,7 @@ namespace project.Controllers
             var personals = personalsServise.Get(id);
             if (personals == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Работник с ID = {id} не найден ");
             }
             return personals;
         }
@@ -50,7 +50,7 @@ namespace project.Controllers
             var existingPersonals = personalsServise.Get(id);
             if (personals == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Работник с ID = {id} не найден ");
             }
             personalsServise.Update(id, personals);
             return NoContent();
@@ -63,10 +63,10 @@ namespace project.Controllers
             var personals = personalsServise.Get(id);
             if (personals == null)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound($"Работник с ID = {id} не найден ");
             }
             personalsServise.Remove(personals.Id);
-            return Ok($"Торт с ID = {id} удален ");
+            return Ok($"Работник с ID = {id} удален ");
         }
     }
 }
