@@ -10,13 +10,13 @@ namespace project.Models
         public string Id { get; set; } = String.Empty;
         [BsonElement("name")]
         public string Name { get; set; } = String.Empty;
-        [BsonElement("type")]
-        public string Type { get; set; } = String.Empty;
-        [BsonElement("weight")]
-        public int Weight { get; set; }
-        [BsonElement("price")]
-        public int Price { get; set; }
-        [BsonElement("ingredients")]
-        public string[]? Ingredients { get; set; }
+        [BsonElement("lastname")]
+        public string Lastname { get; set; } = String.Empty;
+        [BsonElement("jobTitle")]
+        public string JobTitle { get; set; } = String.Empty;
+        [BsonElement("salary")]
+        public int Salary { get; set; }
+        [BsonElement("manager")]
+        public string Manager { get; set; } = String.Empty;
     }
 }

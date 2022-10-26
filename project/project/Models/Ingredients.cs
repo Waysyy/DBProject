@@ -11,9 +11,10 @@ namespace project.Models
         [BsonElement("name")]
         public string Name { get; set; } = String.Empty;
         [BsonElement("explorationDate")]
-        public string ExplorationDate { get; set; } = String.Empty;
+        [BsonRepresentation(BsonType.DateTime)]
+        public DateTime ExplorationDate { get; set; }
         [BsonElement("inStock")]
-        public int InStock { get; set; }
-        
+        public string InStock { get; set; } = String.Empty;
+
     }
 }

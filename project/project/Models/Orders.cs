@@ -1,8 +1,10 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using System.Reflection.Metadata;
 
 namespace project.Models
 {
+    [BsonIgnoreExtraElements]
     public class Orders
     {
         [BsonId]
@@ -11,7 +13,9 @@ namespace project.Models
         [BsonElement("client")]
         public string Client { get; set; } = String.Empty;
         [BsonElement("dateOrd")]
-        public string DateOrd { get; set; } = String.Empty;
+        [BsonRepresentation(BsonType.DateTime)]
+        public DateTime DateOrd { get; set; }
+
         [BsonElement("price")]
         public int Price { get; set; }
     }
