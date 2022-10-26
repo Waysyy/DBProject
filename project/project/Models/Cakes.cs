@@ -13,7 +13,7 @@ namespace project.Models
         [BsonElement("type")]
         public string Type { get; set; } = String.Empty;
         [BsonElement("weight")]
-        public int  Weight { get; set; }
+        public string Weight { get; set; } = String.Empty;
         [BsonElement("price")]
         public int Price { get; set; }
         [BsonElement("ingredients")]
