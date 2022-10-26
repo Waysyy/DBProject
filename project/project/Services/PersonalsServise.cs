@@ -7,7 +7,7 @@ namespace project.Services
     {
         private readonly IMongoCollection<Personals> _personals;
 
-        public PersonalsServise(IPersonalsDBStettings settings, IMongoClient mongoClient)
+        public PersonalsServise(IDBStettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _personals = database.GetCollection<Personals>(settings.PersonalsCollectionName);

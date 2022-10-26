@@ -7,7 +7,7 @@ namespace project.Services
     {
         private readonly IMongoCollection<Cakes> _cakes;
 
-        public CakesServise(ICakesDBStettings settings, IMongoClient mongoClient)
+        public CakesServise(IDBStettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _cakes = database.GetCollection<Cakes>(settings.CakesCollectionName);

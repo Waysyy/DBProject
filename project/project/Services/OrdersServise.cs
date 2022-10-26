@@ -7,7 +7,7 @@ namespace project.Services
     {
         private readonly IMongoCollection<Orders> _orders;
 
-        public OrdersServise(IOrdersDBStettings settings, IMongoClient mongoClient)
+        public OrdersServise(IDBStettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _orders = database.GetCollection<Orders>(settings.OrdersCollectionName);

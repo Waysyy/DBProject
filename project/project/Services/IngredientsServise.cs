@@ -7,7 +7,7 @@ namespace project.Services
     {
         private readonly IMongoCollection<Ingredients> _ingredients;
 
-        public IngredientsServise(IIngredientsDBStettings settings, IMongoClient mongoClient)
+        public IngredientsServise(IDBStettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _ingredients = database.GetCollection<Ingredients>(settings.IngredientsCollectionName);
