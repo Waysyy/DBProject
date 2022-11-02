@@ -36,3 +36,5 @@ A:\GitProjects\DBProject\project\project\obj\Debug\net6.0\refint\project.dll
 A:\GitProjects\DBProject\project\project\obj\Debug\net6.0\project.pdb
 A:\GitProjects\DBProject\project\project\obj\Debug\net6.0\project.genruntimeconfig.cache
 A:\GitProjects\DBProject\project\project\obj\Debug\net6.0\ref\project.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Newtonsoft.Json.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

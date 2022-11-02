@@ -127,7 +127,7 @@ let user1 = users.insertOne({
         
     login: "admin",
     password: "admin",
-    token:"",
+    token:32534543645,
     tokenDate: new Date("2023-09-21T16:00:00Z")
     
 })
@@ -136,7 +136,7 @@ let user2 = users.insertOne({
         
     login: "user",
     password: "user",
-    token:"",
+    token:34657657450,
     tokenDate: new Date("2023-09-21T16:00:00Z")
     
 })

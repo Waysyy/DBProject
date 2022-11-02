@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0OT9wdH1f4ntFPnlqqJIW57zSin6HvF7fY0zfDs9Zi7v8XNhgYSbZFnyiTlT+KBAQLdMy+VtbFJ4YOvE5mMaDA==",
+  "dgSpecHash": "S4XqC8zhhMsd/ErlYkHVZeCJQvbhxbynWmbV3AYF1CUk8v6YluH5RhkZIBZad21K47fgYQClUFFcbcPksOYiaA==",
   "success": true,
   "projectFilePath": "A:\\GitProjects\\DBProject\\project\\project\\project.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,8 @@
     "C:\\Users\\ntart\\.nuget\\packages\\mongodb.driver\\2.18.0\\mongodb.driver.2.18.0.nupkg.sha512",
     "C:\\Users\\ntart\\.nuget\\packages\\mongodb.driver.core\\2.18.0\\mongodb.driver.core.2.18.0.nupkg.sha512",
     "C:\\Users\\ntart\\.nuget\\packages\\mongodb.libmongocrypt\\1.6.0\\mongodb.libmongocrypt.1.6.0.nupkg.sha512",
+    "C:\\Users\\ntart\\.nuget\\packages\\newtonsoft.json\\12.0.1\\newtonsoft.json.12.0.1.nupkg.sha512",
+    "C:\\Users\\ntart\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\ntart\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\ntart\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
     "C:\\Users\\ntart\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",

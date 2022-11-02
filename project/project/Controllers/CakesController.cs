@@ -6,14 +6,18 @@ using project.Services;
 
 namespace project.Controllers
 {
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class CakesController : ControllerBase
     {
+         
         private readonly ICakesServise cakesServise;
 
         public CakesController(ICakesServise cakesServise)
         {
+            
             this.cakesServise = cakesServise;
         }
 
@@ -21,13 +25,17 @@ namespace project.Controllers
         [HttpGet]
         public ActionResult<List<Cakes>> Get()
         {
-            return cakesServise.Get();
+            
+                return cakesServise.Get();
+            
+                
         }
 
         // GET api/<ConfectioneryController>/5
         [HttpGet("{id}")]
         public ActionResult<Cakes> Get(string id)
         {
+
             var cakes = cakesServise.Get(id); 
             if(cakes == null)
             {

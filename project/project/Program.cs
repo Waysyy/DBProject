@@ -1,19 +1,35 @@
+using DnsClient;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using project;
 using project.Models;
 using project.Services;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ICakesServise,CakesServise>();
 
-builder.Services.AddScoped<IClientsServise, ClientsServise>();
 
-builder.Services.AddScoped<IIngredientsServise, IngredientsServise>();
+builder.Services.AddScoped<IUsersServise, UsersServise>();
 
-builder.Services.AddScoped<IOrdersServise, OrdersServise>();
 
-builder.Services.AddScoped<IPersonalsServise, PersonalsServise>();
+
+
+    builder.Services.AddScoped<ICakesServise, CakesServise>();
+
+    builder.Services.AddScoped<IClientsServise, ClientsServise>();
+
+    builder.Services.AddScoped<IIngredientsServise, IngredientsServise>();
+
+    builder.Services.AddScoped<IOrdersServise, OrdersServise>();
+
+    builder.Services.AddScoped<IPersonalsServise, PersonalsServise>();
+
+
+
+
+
 
 builder.Services.Configure<DBStettings>(
     builder.Configuration.GetSection(nameof(DBStettings)));
@@ -28,11 +44,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 var app = builder.Build();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+/*if(Convert.ToString(token) == "0")
+{
+    app.MapGet("/", () => "Hello World!");
+}*/
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

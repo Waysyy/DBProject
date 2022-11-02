@@ -2,6 +2,7 @@
 {
     public interface IDBStettings
     {
+        public string UsersCollectionName { get; set; }
         public string PersonalsCollectionName { get; set; } 
         public string OrdersCollectionName { get; set; }
         public string IngredientsCollectionName { get; set; }
