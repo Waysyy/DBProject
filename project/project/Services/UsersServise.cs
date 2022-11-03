@@ -6,16 +6,14 @@ namespace project.Services
 {
     public class UsersServise : IUsersServise
     {
-        private readonly IMongoCollection<Users> _user;
+        public readonly IMongoCollection<Users> _user;
 
         public UsersServise(IDBStettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _user = database.GetCollection<Users>(settings.UsersCollectionName);
         }
-
-
-       
+      
 
         public Users Get(string login, string password)
         {
@@ -24,16 +22,23 @@ namespace project.Services
             
         }
 
-       public void Auth(string login, string password)
+        public Users GetToken(long token)
+        {
+
+            return _user.Find(user => user.Token == token).FirstOrDefault();
+
+        }
+
+        public void Auth(string login, string password)
         {
 
             
         }
 
-        public void Update(string id, BsonDocument token)
+        public void Update(string login, BsonDocument token)
         {
             
-            _user.UpdateOneAsync(user => user.Id == id, token);
+            _user.UpdateOneAsync(user => user.Login == login, token);
         }
     }
 }

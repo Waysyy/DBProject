@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using project.Models;
 using project.Services;
+using Newtonsoft.Json.Linq;
 
 namespace project.Controllers
 {
@@ -13,8 +14,8 @@ namespace project.Controllers
     public class UsersController : Controller
     {
 
-        public long UserToken;
 
+        public string userAuth = "";
         
 
         private readonly IUsersServise userServise;
@@ -24,6 +25,7 @@ namespace project.Controllers
             this.userServise = userServise;
         }
 
+        TokenOperations tokenOperations = new TokenOperations();
 
         [HttpGet("{login}")]
         public ActionResult<Users> Get(string login, string password)
@@ -33,23 +35,56 @@ namespace project.Controllers
             {
                 return NotFound($"Пользователь с login = {login} не найден ");
             }
-            if (user.TokenDate > DateTime.Today)
+            if (user.TokenDate == DateTime.Today)
             {
                 Random rnd = new Random();
                 long value = rnd.Next(100000000, 199999999);
-                var token = new BsonDocument("$set", new BsonDocument("token", value));
+                var Newtoken = new BsonDocument("$set", new BsonDocument("token", value));
 
-                DateTime date = new DateTime(DateTime.Today.Year+1, DateTime.Today.Month, DateTime.Today.Day);
+                DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, (DateTime.Today.Day+2));
                 var tokenDate = new BsonDocument("$set", new BsonDocument("tokenDate", date));
 
-                userServise.Update(login, token);
+                userServise.Update(login, Newtoken);
                 userServise.Update(login, tokenDate);
+                List<Tokens> TList = tokenOperations.Get();
+                long GettedToken = TList[0].Token;
+                tokenOperations.Update(GettedToken, Newtoken);
+
             }
-            return user;
+            List<Tokens> TokList = tokenOperations.Get();
+            string lastUser = TokList[0].LastUser;
+            string currentUser = user.Login;
+            if (lastUser != currentUser)
+            {
+                var lastuser = new BsonDocument("$set", new BsonDocument("token", user.Token));
+                var Newtoken = new BsonDocument("$set", new BsonDocument("lastUser", user.Login));
+                List<Tokens> TList = tokenOperations.Get();
+                long GettedToken = TList[0].Token;
+                tokenOperations.Update(GettedToken, Newtoken);
+                tokenOperations.Update(GettedToken, lastuser);
+            }
             
+            //GetToken(user.Token);
+            return user;
+             
+
+
         }
+        /*[HttpGet("{token}")]
+        public ActionResult<Users> GetToken(long tokenAuth)
+        {
+            var user = userServise.GetToken(tokenAuth);
+            if (user == null)
+            {
+                return NotFound($"Пользователь не найден ");
+            }
 
-        
+            userAuth = user.Login;
+            return user;
 
+
+
+        }
+*/
     }
 }

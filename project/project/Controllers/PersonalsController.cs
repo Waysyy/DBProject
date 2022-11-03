@@ -10,7 +10,7 @@ namespace project.Controllers
     public class PersonalsController : Controller
     {
         private readonly IPersonalsServise personalsServise;
-
+        TokenOperations tokenOperations = new TokenOperations();
         public PersonalsController(IPersonalsServise personalsServise)
         {
             this.personalsServise = personalsServise;
@@ -39,34 +39,49 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Personals> Post([FromBody] Personals personals)
         {
-            personalsServise.Create(personals);
-            return CreatedAtAction(nameof(Get), new { id = personals.Id }, personals);
+            if (tokenOperations.GetGroup() == true)
+            {
+                personalsServise.Create(personals);
+                return CreatedAtAction(nameof(Get), new { id = personals.Id }, personals);
+            }
+            else
+                return NotFound($"У вас недостаточно прав");
         }
 
         // PUT api/<ConfectioneryController>/5
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Personals personals)
         {
-            var existingPersonals = personalsServise.Get(id);
-            if (personals == null)
+            if (tokenOperations.GetGroup() == true)
             {
-                return NotFound($"Работник с ID = {id} не найден ");
+                var existingPersonals = personalsServise.Get(id);
+                if (personals == null)
+                {
+                    return NotFound($"Работник с ID = {id} не найден ");
+                }
+                personalsServise.Update(id, personals);
+                return NoContent();
             }
-            personalsServise.Update(id, personals);
-            return NoContent();
+            else
+                return NotFound($"У вас недостаточно прав");
         }
 
         // DELETE api/<ConfectioneryController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            var personals = personalsServise.Get(id);
-            if (personals == null)
+            if (tokenOperations.GetGroup() == true)
             {
-                return NotFound($"Работник с ID = {id} не найден ");
+                var personals = personalsServise.Get(id);
+                if (personals == null)
+                {
+                    return NotFound($"Работник с ID = {id} не найден ");
+                }
+                personalsServise.Remove(personals.Id);
+                return Ok($"Работник с ID = {id} удален ");
             }
-            personalsServise.Remove(personals.Id);
-            return Ok($"Работник с ID = {id} удален ");
+            else
+                return NotFound($"У вас недостаточно прав");
         }
     }
 }

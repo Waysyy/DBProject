@@ -1,16 +1,16 @@
 using DnsClient;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using project;
+using project.Controllers;
 using project.Models;
 using project.Services;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<TokenOperations>();
 
-
-
+builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUsersServise, UsersServise>();
 
 

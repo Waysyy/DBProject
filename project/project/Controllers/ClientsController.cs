@@ -10,7 +10,7 @@ namespace project.Controllers
     public class ClientsController : Controller
     {
         private readonly IClientsServise clientsServise;
-
+        TokenOperations tokenOperations = new TokenOperations();
         public ClientsController(IClientsServise clientsServise)
         {
             this.clientsServise = clientsServise;
@@ -39,34 +39,49 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Clients> Post([FromBody] Clients clients)
         {
-            clientsServise.Create(clients);
-            return CreatedAtAction(nameof(Get), new { id = clients.Id }, clients);
+            if (tokenOperations.GetGroup() == true)
+            {
+                clientsServise.Create(clients);
+                return CreatedAtAction(nameof(Get), new { id = clients.Id }, clients);
+            }
+            else
+                return NotFound($"У вас недостаточно прав");
         }
 
         // PUT api/<ConfectioneryController>/5
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Clients clients)
         {
-            var existingClients = clientsServise.Get(id);
-            if (clients == null)
+            if (tokenOperations.GetGroup() == true)
             {
-                return NotFound($"Клиент с ID = {id} не найден ");
+                var existingClients = clientsServise.Get(id);
+                if (clients == null)
+                {
+                    return NotFound($"Клиент с ID = {id} не найден ");
+                }
+                clientsServise.Update(id, clients);
+                return NoContent();
             }
-            clientsServise.Update(id, clients);
-            return NoContent();
+            else
+                return NotFound($"У вас недостаточно прав");
         }
 
         // DELETE api/<ConfectioneryController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            var clients = clientsServise.Get(id);
-            if (clients == null)
+            if (tokenOperations.GetGroup() == true)
             {
-                return NotFound($"Клиент с ID = {id} не найден ");
+                var clients = clientsServise.Get(id);
+                if (clients == null)
+                {
+                    return NotFound($"Клиент с ID = {id} не найден ");
+                }
+                clientsServise.Remove(clients.Id);
+                return Ok($"Клиент с ID = {id} удален ");
             }
-            clientsServise.Remove(clients.Id);
-            return Ok($"Клиент с ID = {id} удален ");
+            else
+                return NotFound($"У вас недостаточно прав");
         }
     }
 }

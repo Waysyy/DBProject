@@ -13,10 +13,11 @@ namespace project.Services
             _personals = database.GetCollection<Personals>(settings.PersonalsCollectionName);
         }
 
-
+        
         public Personals Create(Personals personals)
         {
             _personals.InsertOne(personals);
+            
             return personals;
         }
 

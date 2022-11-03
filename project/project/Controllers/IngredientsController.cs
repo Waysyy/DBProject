@@ -10,7 +10,7 @@ namespace project.Controllers
     public class IngredientsController : Controller
     {
         private readonly IIngredientsServise ingredientsServise;
-
+        TokenOperations tokenOperations = new TokenOperations();
         public IngredientsController(IIngredientsServise ingredientsServise)
         {
             this.ingredientsServise = ingredientsServise;
@@ -39,34 +39,49 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Ingredients> Post([FromBody] Ingredients ingredients)
         {
-            ingredientsServise.Create(ingredients);
-            return CreatedAtAction(nameof(Get), new { id = ingredients.Id }, ingredients);
+            if (tokenOperations.GetGroup() == true)
+            {
+                ingredientsServise.Create(ingredients);
+                return CreatedAtAction(nameof(Get), new { id = ingredients.Id }, ingredients);
+            }
+            else
+                return NotFound($"У вас недостаточно прав");
         }
 
         // PUT api/<ConfectioneryController>/5
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Ingredients ingredients)
         {
-            var existingIngredients = ingredientsServise.Get(id);
-            if (ingredients == null)
+            if (tokenOperations.GetGroup() == true)
             {
-                return NotFound($"Ингредиент с ID = {id} не найден ");
+                var existingIngredients = ingredientsServise.Get(id);
+                if (ingredients == null)
+                {
+                    return NotFound($"Ингредиент с ID = {id} не найден ");
+                }
+                ingredientsServise.Update(id, ingredients);
+                return NoContent();
             }
-            ingredientsServise.Update(id, ingredients);
-            return NoContent();
+            else
+                return NotFound($"У вас недостаточно прав");
         }
 
         // DELETE api/<ConfectioneryController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            var ingredients = ingredientsServise.Get(id);
-            if (ingredients == null)
+            if (tokenOperations.GetGroup() == true)
             {
-                return NotFound($"Ингредиент с ID = {id} не найден ");
+                var ingredients = ingredientsServise.Get(id);
+                if (ingredients == null)
+                {
+                    return NotFound($"Ингредиент с ID = {id} не найден ");
+                }
+                ingredientsServise.Remove(ingredients.Id);
+                return Ok($"Ингредиент с ID = {id} удален ");
             }
-            ingredientsServise.Remove(ingredients.Id);
-            return Ok($"Ингредиент с ID = {id} удален ");
+            else
+                return NotFound($"У вас недостаточно прав");
         }
     }
 }

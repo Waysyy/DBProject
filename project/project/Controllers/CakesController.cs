@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using project.Models;
 using project.Services;
 
@@ -15,18 +16,22 @@ namespace project.Controllers
          
         private readonly ICakesServise cakesServise;
 
+        TokenOperations tokenOperations = new TokenOperations();
         public CakesController(ICakesServise cakesServise)
         {
             
             this.cakesServise = cakesServise;
+            
         }
+
+        
 
         // GET: api/<ConfectioneryController>
         [HttpGet]
         public ActionResult<List<Cakes>> Get()
         {
             
-                return cakesServise.Get();
+            return cakesServise.Get();
             
                 
         }
@@ -35,7 +40,8 @@ namespace project.Controllers
         [HttpGet("{id}")]
         public ActionResult<Cakes> Get(string id)
         {
-
+            
+            
             var cakes = cakesServise.Get(id); 
             if(cakes == null)
             {
@@ -48,34 +54,52 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Cakes> Post([FromBody] Cakes cakes)
         {
-            cakesServise.Create(cakes);
-            return CreatedAtAction(nameof(Get), new {id = cakes.Id}, cakes);
+            
+            if (tokenOperations.GetGroup() == true)
+            {
+                cakesServise.Create(cakes);
+                return CreatedAtAction(nameof(Get), new { id = cakes.Id }, cakes);
+            }
+            else
+                return NotFound($"У вас недостаточно прав");
+
+
         }
 
         // PUT api/<ConfectioneryController>/5
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Cakes cakes)
         {
-            var existingCakes = cakesServise.Get(id);
-            if (cakes == null)
+            if (tokenOperations.GetGroup() == true)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                var existingCakes = cakesServise.Get(id);
+                if (cakes == null)
+                {
+                    return NotFound($"Торт с ID = {id} не найден ");
+                }
+                cakesServise.Update(id, cakes);
+                return NoContent();
             }
-            cakesServise.Update(id,cakes);
-            return NoContent();
+            else
+                return NotFound($"У вас недостаточно прав");
         }
 
         // DELETE api/<ConfectioneryController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            var cakes = cakesServise.Get(id);
-            if (cakes == null)
+            if (tokenOperations.GetGroup() == true)
             {
-                return NotFound($"Торт с ID = {id} не найден ");
+                var cakes = cakesServise.Get(id);
+                if (cakes == null)
+                {
+                    return NotFound($"Торт с ID = {id} не найден ");
+                }
+                cakesServise.Remove(cakes.Id);
+                return Ok($"Торт с ID = {id} удален ");
             }
-            cakesServise.Remove(cakes.Id);
-            return Ok($"Торт с ID = {id} удален ");
+            else
+                return NotFound($"У вас недостаточно прав");
         }
     }
 }

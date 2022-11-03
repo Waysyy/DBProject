@@ -16,8 +16,10 @@ namespace project.Services
 
         public Cakes Create(Cakes cakes)
         {
-            _cakes.InsertOne(cakes);
-            return cakes;
+
+             _cakes.InsertOne(cakes);
+             return cakes;
+
         }
 
         public List<Cakes> Get()
