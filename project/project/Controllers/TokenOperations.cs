@@ -43,9 +43,17 @@ namespace project.Controllers
         public TokenOperations(){}
         public bool GetGroup()
         {
+            
 
             Tokens token;
             List<Tokens> TList = Get();
+            if(TList[0].Valid <= DateTime.Now)
+            {
+                long value = 1;
+                var Newtoken = new BsonDocument("$set", new BsonDocument("token", value));
+                Update(TList[0].Token, Newtoken);
+            }
+            TList = Get();
             long GettedToken = TList[0].Token;
             Users users;
             Users UserToken = GetToken(GettedToken);

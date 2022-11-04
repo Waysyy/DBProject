@@ -12,5 +12,8 @@ namespace project.Models
         public long Token { get; set; }
         [BsonElement("lastUser")]
         public string LastUser { get; set; } = String.Empty;
+        [BsonElement("valid")]
+        [BsonRepresentation(BsonType.DateTime)]
+        public DateTime Valid { get; set; }
     }
 }

@@ -43,17 +43,18 @@ namespace project.Controllers
 
                 DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, (DateTime.Today.Day+2));
                 var tokenDate = new BsonDocument("$set", new BsonDocument("tokenDate", date));
-
+                var validDate = new BsonDocument("$set", new BsonDocument("valid", date));
                 userServise.Update(login, Newtoken);
                 userServise.Update(login, tokenDate);
                 List<Tokens> TList = tokenOperations.Get();
                 long GettedToken = TList[0].Token;
                 tokenOperations.Update(GettedToken, Newtoken);
-
+                tokenOperations.Update(GettedToken, validDate);
             }
             List<Tokens> TokList = tokenOperations.Get();
             string lastUser = TokList[0].LastUser;
             string currentUser = user.Login;
+            
             if (lastUser != currentUser)
             {
                 var lastuser = new BsonDocument("$set", new BsonDocument("token", user.Token));

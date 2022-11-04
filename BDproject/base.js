@@ -146,6 +146,7 @@ let user2 = users.insertOne({
 let token = tokens.insertOne({
     
     lastUser:"admin",
-    token: 1
+    token: 1,
+    valid: new Date("2022-09-21T16:00:00Z")
     
 })
