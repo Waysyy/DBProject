@@ -23,5 +23,33 @@ namespace projectFront
             cakesForm.Show();
             this.Hide();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form ordersForm = new OrdersForm();
+            ordersForm.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form personalsForm = new PersonalsForm();
+            personalsForm.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form clientsForm = new ClientsForm();
+            clientsForm.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form ingredientsForm = new IngredientsForm();
+            ingredientsForm.Show();
+            this.Hide();
+        }
     }
 }

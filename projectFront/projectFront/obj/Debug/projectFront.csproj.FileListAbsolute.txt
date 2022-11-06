@@ -240,3 +240,7 @@ A:\GitProjects\DBProject\projectFront\projectFront\bin\Debug\System.Memory.Data.
 A:\GitProjects\DBProject\projectFront\projectFront\bin\Debug\System.Net.Http.WinHttpHandler.xml
 A:\GitProjects\DBProject\projectFront\projectFront\bin\Debug\System.Text.Json.xml
 A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.csproj.SuggestedBindingRedirects.cache
+A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.OrdersForm.resources
+A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.ClientsForm.resources
+A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.IngredientsForm.resources
+A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.PersonalsForm.resources

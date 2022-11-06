@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Graph;
-using MongoDB.Bson;
 using projectFront.Controllers;
 using projectFront.Models;
 using System;
@@ -11,24 +9,26 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http.Results;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Application = System.Windows.Forms.Application;
 
 namespace projectFront
 {
-    public partial class CakesForm : Form
+    public partial class PersonalsForm : Form
     {
+        public PersonalsForm()
+        {
+            InitializeComponent();
+        }
+
         public bool checkMistakesID()
         {
-            if(textBox1.Text == String.Empty)
+            if (textBox1.Text == String.Empty)
             {
                 MessageBox.Show("Кажется вы забыли заполнить поле ID");
                 return false;
             }
             else
-               return true;
+                return true;
         }
 
         public void Cleaner()
@@ -37,20 +37,16 @@ namespace projectFront
             dataGridView2 = null;
         }
 
-        CakesController cakesController = new CakesController();
-        public CakesForm()
+        PersonalsController personalsController = new PersonalsController();
+        private void getInfo_Click(object sender, EventArgs e)
         {
-            InitializeComponent();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            ActionResult<List<Personals>> personalsResult = personalsController.Get();
+            dataGridView1.DataSource = personalsResult.Value;
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            
+
             Form menuForm = new mainMenu();
             menuForm.Show();
             this.Close();
@@ -64,47 +60,56 @@ namespace projectFront
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            ActionResult<List<Cakes>> cakesResult = cakesController.Get();
-            dataGridView1.DataSource = cakesResult.Value;
+
+            Personals personals = new Personals();
+            personals.Id = textBox1.Text;
+            personals.Name = (string)dataGridView2[1, 0].Value;
+            personals.Lastname = (string)dataGridView2[2, 0].Value;
+            personals.JobTitle = (string)dataGridView2[3, 0].Value;
+            personals.Salary = (int)dataGridView2[4, 0].Value;
+            personals.Manager = (string)dataGridView2[5, 0].Value;
+
+
+            personalsController.Put(textBox1.Text, personals);
+            Cleaner();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
             if (checkMistakesID() == true)
             {
-                
-                ActionResult<Cakes> cakesResult = cakesController.Get(textBox1.Text);
 
-                List<Cakes> listRes = new List<Cakes>();
-                listRes.Add(cakesResult.Value);
+                ActionResult<Personals> personalsResult = personalsController.Get(textBox1.Text);
+
+                List<Personals> listRes = new List<Personals>();
+                listRes.Add(personalsResult.Value);
                 dataGridView2.DataSource = listRes;
             }
-            
+
         }
 
         private void getInfoId_Click(object sender, EventArgs e)
         {
-            
+
             if (checkMistakesID() == true)
             {
-                
-                ActionResult<Cakes> cakesResult = cakesController.Get(textBox1.Text);
 
-                List<Cakes> listRes = new List<Cakes>();
-                listRes.Add(cakesResult.Value);
+                ActionResult<Personals> personalsResult = personalsController.Get(textBox1.Text);
+
+                List<Personals> listRes = new List<Personals>();
+                listRes.Add(personalsResult.Value);
                 dataGridView1.DataSource = listRes;
             }
         }
 
         private void deleteInfoId_Click(object sender, EventArgs e)
         {
-            
+
             if (checkMistakesID() == true)
             {
                 ActionResult result2 = null;
-                ActionResult result = cakesController.Delete(textBox1.Text);
+                ActionResult result = personalsController.Delete(textBox1.Text);
                 var result3 = (OkObjectResult)result; //Код запроса
                 if (result != result3.Value)
                 { MessageBox.Show("Объект удален"); }
@@ -115,49 +120,31 @@ namespace projectFront
         private void postInfo_Click(object sender, EventArgs e)
         {
             //Cleaner();
-            List<Cakes> postList = new List<Cakes>();
-            Cakes cakes = new Cakes();
-            
-            cakes.Name = "";
-            cakes.Type = "";
-            cakes.Weight = "";
-            cakes.Price = 0;
-          
-            postList.Add(cakes);
+            List<Personals> postList = new List<Personals>();
+            Personals personals = new Personals();
+
+            personals.Name = "";
+            personals.Lastname = "";
+            personals.JobTitle = "";
+            personals.Salary = 0;
+            personals.Manager = "";
+
+            postList.Add(personals);
             dataGridView2.DataSource = postList;
-            
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            Cakes cakes = new Cakes();
-            cakes.Id = "";
-            cakes.Name = (string)dataGridView2[1, 0].Value;
-            cakes.Type = (string)dataGridView2[2, 0].Value;
-            cakes.Weight = (string)dataGridView2[3, 0].Value;
-            cakes.Price = (int)dataGridView2[4, 0].Value;
 
-            cakesController.Post(cakes);
-            Cleaner();
-        }
+            Personals personals = new Personals();
+            personals.Id = "";
+            personals.Name = (string)dataGridView2[1, 0].Value;
+            personals.Lastname = (string)dataGridView2[2, 0].Value;
+            personals.JobTitle = (string)dataGridView2[3, 0].Value;
+            personals.Salary = (int)dataGridView2[4, 0].Value;
+            personals.Manager = (string)dataGridView2[5, 0].Value;
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            
-            Cakes cakes = new Cakes();
-            cakes.Id = textBox1.Text;
-            cakes.Name = (string)dataGridView2[1, 0].Value;
-            cakes.Type = (string)dataGridView2[2, 0].Value;
-            cakes.Weight = (string)dataGridView2[3, 0].Value;
-            cakes.Price = (int)dataGridView2[4, 0].Value;
-
-            cakesController.Put(textBox1.Text, cakes);
+            personalsController.Post(personals);
             Cleaner();
         }
 
@@ -176,7 +163,17 @@ namespace projectFront
 
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

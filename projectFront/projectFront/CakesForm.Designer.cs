@@ -54,6 +54,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(443, 424);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // getInfoId
             // 
@@ -126,6 +127,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(429, 57);
             this.dataGridView2.TabIndex = 8;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // label2
             // 
@@ -147,6 +149,7 @@
             this.label3.Size = new System.Drawing.Size(78, 36);
             this.label3.TabIndex = 10;
             this.label3.Text = "<----";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -157,6 +160,7 @@
             this.label4.Size = new System.Drawing.Size(194, 36);
             this.label4.TabIndex = 11;
             this.label4.Text = "Табличка вывода";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -167,6 +171,7 @@
             this.label5.Size = new System.Drawing.Size(263, 36);
             this.label5.TabIndex = 12;
             this.label5.Text = "Сюда вводить ID --->";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // button6
             // 
@@ -205,7 +210,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 626);
+            this.ClientSize = new System.Drawing.Size(1120, 639);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button6);

@@ -1,6 +1,8 @@
 ﻿using projectFront.Models;
 using MongoDB.Driver;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using System;
 
 namespace projectFront.Services
 {
@@ -30,12 +32,21 @@ namespace projectFront.Services
 
         public Cakes Get(string id)
         {
-            return _cakes.Find(cakes => cakes.Id == id).FirstOrDefault();
+            /*try
+            {*/
+                return _cakes.Find(cakes => cakes.Id == id).FirstOrDefault();
+           /* }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }*/
         }
 
         public void Remove(string id)
         {
              _cakes.DeleteOne(cakes => cakes.Id == id);
+
         }
 
         public void Update(string id, Cakes cakes)

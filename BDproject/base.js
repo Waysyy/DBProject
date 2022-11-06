@@ -41,7 +41,7 @@ for (i = 0; i < 10; ++i) {
         name: managerName,
         lastname: managerLastname,
         jobTitle: "менеджер",
-        salary: [Math.floor(Math.random() * 50000) + 20000],
+        salary: Math.floor(Math.random() * 50000) + 20000,
         manager: null
     })
     managerArr[i] = (managerName+" " +managerLastname);
@@ -56,7 +56,7 @@ for(i = 0; i < 50; ++i){
         name: cookName,
         lastname: cookLastname,
         jobTitle: "повар",
-        salary: [Math.floor(Math.random() * 50000) + 20000],
+        salary: Math.floor(Math.random() * 50000) + 20000,
         manager: managerArr[Math.floor(Math.random() * 10)],
         
     })
@@ -67,7 +67,7 @@ for(i = 0; i < 50; ++i){
         name: nameArr[Math.floor(Math.random() * 100)],
         lastname: lastnameArr[Math.floor(Math.random() * 100)],
         jobTitle: jobTitleArr[Math.floor(Math.random() * 2)],
-        salary: [Math.floor(Math.random() * 50000) + 20000],
+        salary: Math.floor(Math.random() * 50000) + 20000,
         manager: managerArr[Math.floor(Math.random() * 10)]
 
     })
@@ -115,10 +115,8 @@ for(i = 0; i < 300; ++i)
         
         client: clientArr[Math.floor(Math.random() * 100)],
         dateOrd: randomDate(2020 - 07 - 17, 2030 - 07 - 17, 00, 00),
-        ord:{
-            cook: cookArr[Math.floor(Math.random() * 50)],
-            cake: cakeArr[Math.floor(Math.random() * 50)]
-        },
+        cook: cookArr[Math.floor(Math.random() * 50)],
+        cake: cakeArr[Math.floor(Math.random() * 50)],
         price: Math.floor(Math.random() * 10000) + 1000,
         
     })

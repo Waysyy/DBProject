@@ -16,6 +16,11 @@ namespace projectFront.Models
         [BsonRepresentation(BsonType.DateTime)]
         public DateTime DateOrd { get; set; }
 
+        [BsonElement("cook")]
+        public string Cook { get; set; } = String.Empty;
+        [BsonElement("cake")]
+        public string Cake { get; set; } = String.Empty;
+
         [BsonElement("price")]
         public int Price { get; set; }
     }

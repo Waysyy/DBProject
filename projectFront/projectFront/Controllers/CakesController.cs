@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using projectFront.Models;
 using projectFront.Services;
 using System.Collections.Generic;
+using System.Windows.Forms;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace projectFront.Controllers
@@ -47,8 +48,10 @@ namespace projectFront.Controllers
             var cakes = cakesServise.Get(id); 
             if(cakes == null)
             {
+                //MessageBox.Show("Вы ошиблись в ID, вывод может быть некорректен");
                 return NotFound($"Торт с ID = {id} не найден ");
             }
+            
             return cakes;
         }
 
