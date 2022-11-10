@@ -22,7 +22,7 @@ namespace project.Services
             
         }
 
-        public Users GetToken(long token)
+        public Users GetToken(string token)
         {
 
             return _user.Find(user => user.Token == token).FirstOrDefault();

@@ -6,6 +6,13 @@ using MongoDB.Driver;
 using project.Models;
 using project.Services;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.IdentityModel.Tokens;
+
+using System.Security.Claims;
+using System;
+using DnsClient;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace project.Controllers
 {
@@ -15,8 +22,6 @@ namespace project.Controllers
     {
 
 
-        public string userAuth = "";
-        
 
         private readonly IUsersServise userServise;
 
@@ -27,10 +32,10 @@ namespace project.Controllers
 
         TokenOperations tokenOperations = new TokenOperations();
 
-        [HttpGet("{login}")]
+        /*[HttpGet("{login}")]
         public ActionResult<Users> Get(string login, string password)
         {
-            var user = userServise.Get(login,password);
+            var user = userServise.Get(login, password);
             if (user == null)
             {
                 return NotFound($"Пользователь с login = {login} не найден ");
@@ -41,7 +46,7 @@ namespace project.Controllers
                 long value = rnd.Next(100000000, 199999999);
                 var Newtoken = new BsonDocument("$set", new BsonDocument("token", value));
 
-                DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, (DateTime.Today.Day+2));
+                DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, (DateTime.Today.Day + 2));
                 var tokenDate = new BsonDocument("$set", new BsonDocument("tokenDate", date));
                 var validDate = new BsonDocument("$set", new BsonDocument("valid", date));
                 userServise.Update(login, Newtoken);
@@ -54,7 +59,7 @@ namespace project.Controllers
             List<Tokens> TokList = tokenOperations.Get();
             string lastUser = TokList[0].LastUser;
             string currentUser = user.Login;
-            
+
             if (lastUser != currentUser)
             {
                 var lastuser = new BsonDocument("$set", new BsonDocument("token", user.Token));
@@ -66,26 +71,69 @@ namespace project.Controllers
             }
             
             //GetToken(user.Token);
-            return user;
-             
+             return user;
 
 
-        }
-        /*[HttpGet("{token}")]
-        public ActionResult<Users> GetToken(long tokenAuth)
+
+        }*/
+      
+
+        [HttpPost("/token")]
+        public IActionResult Token(string username, string password)
         {
-            var user = userServise.GetToken(tokenAuth);
-            if (user == null)
+            var identity = GetIdentity(username, password);
+            if (identity == null)
             {
-                return NotFound($"Пользователь не найден ");
+                return BadRequest(new { errorText = "Invalid username or password." });
             }
 
-            userAuth = user.Login;
-            return user;
+            var now = DateTime.UtcNow;
+            // создаем JWT-токен
+            var jwt = new JwtSecurityToken(
+                    issuer: Authorization.ISSUER,
+                    audience: Authorization.AUDIENCE,
+                    notBefore: now,
+                    claims: identity.Claims,
+                    expires: now.Add(TimeSpan.FromMinutes(Authorization.LIFETIME)),
+                    signingCredentials: new SigningCredentials(Authorization.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+            var response = new
+            {
+                access_token = encodedJwt,
+                username = identity.Name
+            };
 
 
+            DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, (DateTime.Today.Day + 2));
+            var token = new BsonDocument("$set", new BsonDocument("token", encodedJwt));
+            var validDate = new BsonDocument("$set", new BsonDocument("tokenDate", date));
+            userServise.Update(username, token);
+            userServise.Update(username, validDate);
+            tokenOperations.Invoke(encodedJwt);
 
+
+            return Json(response);
         }
-*/
+
+        private ClaimsIdentity GetIdentity(string username, string password)
+        {
+            var user = userServise.Get(username, password);
+            if (user != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Login)
+                };
+                ClaimsIdentity claimsIdentity =
+                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                    ClaimsIdentity.DefaultRoleClaimType);
+                return claimsIdentity;
+            }
+
+            // если пользователя не найдено
+            return null;
+        }
     }
 }

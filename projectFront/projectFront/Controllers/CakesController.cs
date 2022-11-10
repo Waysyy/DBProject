@@ -49,7 +49,7 @@ namespace projectFront.Controllers
             if(cakes == null)
             {
                 //MessageBox.Show("Вы ошиблись в ID, вывод может быть некорректен");
-                return NotFound($"Торт с ID = {id} не найден ");
+                return NotFound(null);
             }
             
             return cakes;
@@ -66,7 +66,7 @@ namespace projectFront.Controllers
                 return CreatedAtAction(nameof(Get), new { id = cakes.Id }, cakes);
             }
             else
-                return NotFound($"У вас недостаточно прав");
+                return NotFound(null);
 
 
         }
@@ -80,13 +80,13 @@ namespace projectFront.Controllers
                 var existingCakes = cakesServise.Get(id);
                 if (cakes == null)
                 {
-                    return NotFound($"Торт с ID = {id} не найден ");
+                    return NotFound(null);
                 }
                 cakesServise.Update(id, cakes);
                 return NoContent();
             }
             else
-                return NotFound($"У вас недостаточно прав");
+                return NotFound(null);
         }
 
         // DELETE api/<ConfectioneryController>/5
@@ -98,13 +98,13 @@ namespace projectFront.Controllers
                 var cakes = cakesServise.Get(id);
                 if (cakes == null)
                 {
-                    return NotFound($"Торт с ID = {id} не найден ");
+                    return NotFound(null);
                 }
                 cakesServise.Remove(cakes.Id);
                 return Ok("ok");
             }
             else
-                return NotFound($"У вас недостаточно прав");
+                return NotFound(null);
         }
     }
 }

@@ -32,15 +32,15 @@ namespace projectFront.Services
 
         public Cakes Get(string id)
         {
-            /*try
-            {*/
-                return _cakes.Find(cakes => cakes.Id == id).FirstOrDefault();
-           /* }
+            try
+            {
+               return _cakes.Find(cakes => cakes.Id == id).FirstOrDefault();
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 return null;
-            }*/
+            }
         }
 
         public void Remove(string id)

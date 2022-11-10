@@ -13,7 +13,7 @@ namespace project.Models
         [BsonElement("password")]
         public string Password { get; set; } = String.Empty;
         [BsonElement("token")]
-        public long Token { get; set; }
+        public string Token { get; set; } = String.Empty;
         [BsonElement("tokenDate")]
         [BsonRepresentation(BsonType.DateTime)]
         public DateTime TokenDate { get; set; }

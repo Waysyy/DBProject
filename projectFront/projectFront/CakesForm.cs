@@ -20,6 +20,7 @@ namespace projectFront
 {
     public partial class CakesForm : Form
     {
+        bool buttonChangeCheck = false;
         public bool checkMistakesID()
         {
             if(textBox1.Text == String.Empty)
@@ -29,6 +30,25 @@ namespace projectFront
             }
             else
                return true;
+        }
+        public bool CheckDatagrid()
+        {
+            bool check = false;
+            for (int j = 0; j < dataGridView2.RowCount; ++j)
+            {
+                for (int i = 1; i < dataGridView2.ColumnCount; ++i)
+                {
+                    if (Convert.ToString(dataGridView2[i, j].Value) == string.Empty || Convert.ToString(dataGridView2[i, j].Value) == " ")
+                    {
+                        check = false;
+                        MessageBox.Show("Заполните все поля");
+                        break;
+                    }
+                    else
+                        check = true;
+                }
+            }
+            return check;
         }
 
         public void Cleaner()
@@ -74,7 +94,7 @@ namespace projectFront
             
             if (checkMistakesID() == true)
             {
-                
+                buttonChangeCheck = true;
                 ActionResult<Cakes> cakesResult = cakesController.Get(textBox1.Text);
 
                 List<Cakes> listRes = new List<Cakes>();
@@ -103,10 +123,12 @@ namespace projectFront
             
             if (checkMistakesID() == true)
             {
-                ActionResult result2 = null;
-                ActionResult result = cakesController.Delete(textBox1.Text);
-                var result3 = (OkObjectResult)result; //Код запроса
-                if (result != result3.Value)
+                //OkObjectResult okObjectResult;
+                 ActionResult result = cakesController.Delete(textBox1.Text);
+                
+                 var result3 = (ObjectResult)result; //Код запроса
+                
+                if (404 != result3.StatusCode)
                 { MessageBox.Show("Объект удален"); }
 
             }
@@ -135,30 +157,39 @@ namespace projectFront
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            Cakes cakes = new Cakes();
-            cakes.Id = "";
-            cakes.Name = (string)dataGridView2[1, 0].Value;
-            cakes.Type = (string)dataGridView2[2, 0].Value;
-            cakes.Weight = (string)dataGridView2[3, 0].Value;
-            cakes.Price = (int)dataGridView2[4, 0].Value;
+            if(CheckDatagrid() == true)
+            {
+                Cakes cakes = new Cakes();
+                cakes.Id = "";
 
-            cakesController.Post(cakes);
-            Cleaner();
+                cakes.Name = (string)dataGridView2[1, 0].Value;
+                cakes.Type = (string)dataGridView2[2, 0].Value;
+                cakes.Weight = (string)dataGridView2[3, 0].Value;
+                cakes.Price = (int)dataGridView2[4, 0].Value;
+
+                cakesController.Post(cakes);
+                Cleaner();
+            }
+           
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            
-            Cakes cakes = new Cakes();
-            cakes.Id = textBox1.Text;
-            cakes.Name = (string)dataGridView2[1, 0].Value;
-            cakes.Type = (string)dataGridView2[2, 0].Value;
-            cakes.Weight = (string)dataGridView2[3, 0].Value;
-            cakes.Price = (int)dataGridView2[4, 0].Value;
+            if (buttonChangeCheck == true)
+            {
+                Cakes cakes = new Cakes();
+                cakes.Id = textBox1.Text;
+                cakes.Name = (string)dataGridView2[1, 0].Value;
+                cakes.Type = (string)dataGridView2[2, 0].Value;
+                cakes.Weight = (string)dataGridView2[3, 0].Value;
+                cakes.Price = (int)dataGridView2[4, 0].Value;
 
-            cakesController.Put(textBox1.Text, cakes);
-            Cleaner();
+                cakesController.Put(textBox1.Text, cakes);
+                Cleaner();
+            }
+            else
+                MessageBox.Show("Вы забыли нажать кнопку <<изменить по id>>");
+            
         }
 
         private void label5_Click(object sender, EventArgs e)

@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using project.Models;
 using project.Services;
+using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,9 +26,10 @@ namespace project.Controllers
             
         }
 
-        
+
 
         // GET: api/<ConfectioneryController>
+        
         [HttpGet]
         public ActionResult<List<Cakes>> Get()
         {

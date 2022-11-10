@@ -51,7 +51,7 @@ namespace projectFront.Controllers
                 return CreatedAtAction(nameof(Get), new { id = clients.Id }, clients);
             }
             else
-                return NotFound($"У вас недостаточно прав");
+                return NotFound(null);
         }
 
         // PUT api/<ConfectioneryController>/5
@@ -69,7 +69,7 @@ namespace projectFront.Controllers
                 return NoContent();
             }
             else
-                return NotFound($"У вас недостаточно прав");
+                return NotFound(null);
         }
 
         // DELETE api/<ConfectioneryController>/5
@@ -87,7 +87,7 @@ namespace projectFront.Controllers
                 return Ok("ok");
             }
             else
-                return NotFound($"У вас недостаточно прав");
+                return NotFound(null);
         }
     }
 }

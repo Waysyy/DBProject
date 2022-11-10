@@ -38,3 +38,11 @@ A:\GitProjects\DBProject\project\project\obj\Debug\net6.0\project.genruntimeconf
 A:\GitProjects\DBProject\project\project\obj\Debug\net6.0\ref\project.dll
 A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Newtonsoft.Json.dll
 A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+A:\GitProjects\DBProject\project\project\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

@@ -12,6 +12,6 @@ namespace project.Services
 
         void Auth(string login, string password);
 
-        public Users GetToken(long token);
+        public Users GetToken(string token);
     }
 }

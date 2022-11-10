@@ -133,9 +133,9 @@
             this.postInfo.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.postInfo.Location = new System.Drawing.Point(6, 253);
             this.postInfo.Name = "postInfo";
-            this.postInfo.Size = new System.Drawing.Size(501, 57);
+            this.postInfo.Size = new System.Drawing.Size(535, 57);
             this.postInfo.TabIndex = 37;
-            this.postInfo.Text = "Добавить информацию о работнике";
+            this.postInfo.Text = "Добавить информацию об ингредиенте";
             this.postInfo.UseVisualStyleBackColor = true;
             this.postInfo.Click += new System.EventHandler(this.postInfo_Click);
             // 
@@ -152,9 +152,9 @@
             this.deleteInfoId.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.deleteInfoId.Location = new System.Drawing.Point(6, 190);
             this.deleteInfoId.Name = "deleteInfoId";
-            this.deleteInfoId.Size = new System.Drawing.Size(501, 57);
+            this.deleteInfoId.Size = new System.Drawing.Size(535, 57);
             this.deleteInfoId.TabIndex = 35;
-            this.deleteInfoId.Text = "Удалить информацию о работнике по id";
+            this.deleteInfoId.Text = "Удалить информацию об ингредиенте по id";
             this.deleteInfoId.UseVisualStyleBackColor = true;
             this.deleteInfoId.Click += new System.EventHandler(this.deleteInfoId_Click);
             // 
@@ -163,9 +163,9 @@
             this.button3.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button3.Location = new System.Drawing.Point(6, 71);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(501, 53);
+            this.button3.Size = new System.Drawing.Size(535, 53);
             this.button3.TabIndex = 34;
-            this.button3.Text = "Изменить информацию о работнике по id";
+            this.button3.Text = "Изменить информацию об ингредиенте по id";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -174,9 +174,9 @@
             this.getInfo.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.getInfo.Location = new System.Drawing.Point(6, 5);
             this.getInfo.Name = "getInfo";
-            this.getInfo.Size = new System.Drawing.Size(501, 60);
+            this.getInfo.Size = new System.Drawing.Size(535, 60);
             this.getInfo.TabIndex = 33;
-            this.getInfo.Text = "Получить информацию о всех работниках";
+            this.getInfo.Text = "Получить информацию о всех ингредиентах";
             this.getInfo.UseVisualStyleBackColor = true;
             this.getInfo.Click += new System.EventHandler(this.getInfo_Click);
             // 
@@ -185,9 +185,9 @@
             this.getInfoId.Font = new System.Drawing.Font("Segoe Print", 15.75F);
             this.getInfoId.Location = new System.Drawing.Point(6, 130);
             this.getInfoId.Name = "getInfoId";
-            this.getInfoId.Size = new System.Drawing.Size(501, 54);
+            this.getInfoId.Size = new System.Drawing.Size(535, 54);
             this.getInfoId.TabIndex = 32;
-            this.getInfoId.Text = "Получить информацию о работнике по id";
+            this.getInfoId.Text = "Получить информацию об ингредиенте по id";
             this.getInfoId.UseVisualStyleBackColor = true;
             this.getInfoId.Click += new System.EventHandler(this.getInfoId_Click);
             // 
