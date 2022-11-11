@@ -39,7 +39,7 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Clients> Post([FromBody] Clients clients)
         {
-            if (tokenOperations.GetGroup() == true)
+            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
             {
                 clientsServise.Create(clients);
                 return CreatedAtAction(nameof(Get), new { id = clients.Id }, clients);
@@ -52,7 +52,7 @@ namespace project.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Clients clients)
         {
-            if (tokenOperations.GetGroup() == true)
+            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
             {
                 var existingClients = clientsServise.Get(id);
                 if (clients == null)
@@ -70,7 +70,7 @@ namespace project.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            if (tokenOperations.GetGroup() == true)
+            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
             {
                 var clients = clientsServise.Get(id);
                 if (clients == null)

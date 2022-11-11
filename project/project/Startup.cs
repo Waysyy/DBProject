@@ -1,10 +1,14 @@
 ﻿
+using AspNet.Security.OAuth.Validation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 
 namespace project
 {
-    public class Startup
+    public class Startup : FunctionsStartup
     {
         public void ConfigureServices(IServiceCollection services)
         {
@@ -32,9 +36,30 @@ namespace project
                             ValidateIssuerSigningKey = true,
                         };
                     });
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser()
+                .Build();
+            });
+            services.AddAuthentication(OAuthValidationDefaults.AuthenticationScheme)
+            .AddOAuthValidation();
             services.AddControllersWithViews();
         }
+        public override void Configure(IFunctionsHostBuilder builder)
+        {
+            // This is configuration from environment variables, settings.json etc.
+            var configuration = builder.GetContext().Configuration;
 
+            builder.Services.AddAuthentication(sharedOptions =>
+            {
+                sharedOptions.DefaultScheme = "Bearer";
+                sharedOptions.DefaultChallengeScheme = "Bearer";
+            })
+                .AddMicrosoftIdentityWebApi(configuration)
+                    .EnableTokenAcquisitionToCallDownstreamApi()
+                    .AddInMemoryTokenCaches();
+        }
         public void Configure(IApplicationBuilder app)
         {
             app.UseDeveloperExceptionPage();

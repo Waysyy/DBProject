@@ -17,6 +17,7 @@ namespace project.Models
         [BsonElement("tokenDate")]
         [BsonRepresentation(BsonType.DateTime)]
         public DateTime TokenDate { get; set; }
-
+        [BsonElement("role")]
+        public string Role { get; set; } = String.Empty;
     }
 }

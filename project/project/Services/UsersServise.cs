@@ -15,10 +15,10 @@ namespace project.Services
         }
       
 
-        public Users Get(string login, string password)
+        public Users Get(string login)
         {
             
-            return _user.Find(user => user.Login == login && user.Password == password).FirstOrDefault();
+            return _user.Find(user => user.Login == login).FirstOrDefault();
             
         }
 
@@ -29,7 +29,7 @@ namespace project.Services
 
         }
 
-        public void Auth(string login, string password)
+        public void Auth(string login)
         {
 
             

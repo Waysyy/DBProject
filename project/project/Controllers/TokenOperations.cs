@@ -6,7 +6,10 @@ using MongoDB.Driver;
 using Newtonsoft;
 using project.Models;
 using project.Services;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Security.Principal;
+using System.Text;
 
 namespace project.Controllers
 {
@@ -18,23 +21,7 @@ namespace project.Controllers
 
         public MongoClient client = new MongoClient("mongodb+srv://way:way@cluster0.ztgw56g.mongodb.net/?retryWrites=true&w=majority");
 
-        /*public List<Tokens> Get()
-        {
-
-            var db = client.GetDatabase("project");
-            _token = db.GetCollection<Tokens>("tokens");
-
-            return _token.Find(token => true).ToList();
-        }
-
-
-        public void Update(long tokenAuth, BsonDocument tokenchange)
-        {
-
-            var db = client.GetDatabase("project");
-            _token = db.GetCollection<Tokens>("tokens");
-            _token.UpdateOneAsync(token => token.Token == tokenAuth, tokenchange);
-        }*/
+       
         public Users GetToken(string token)
         {
 
@@ -52,28 +39,27 @@ namespace project.Controllers
             return token;
         }
 
+        private readonly RequestDelegate _next;
+        private readonly IConfiguration _configuration;
+        //private readonly IUserService _userService;
+
+        public TokenOperations(RequestDelegate next, IConfiguration configuration)
+        {
+            _next = next;
+            _configuration = configuration;
+            
+        }
+        public string JWTToken(string token)
+        {
+            return token;
+        }
 
 
         public TokenOperations(){}
-        public bool GetGroup()
+        public bool GetGroup(string token)
         {
 
-            /*
-                        Tokens token;
-                        List<Tokens> TList = Get();
-                        if(TList[0].Valid <= DateTime.Now)
-                        {
-                            long value = 1;
-                            var Newtoken = new BsonDocument("$set", new BsonDocument("token", value));
-                            Update(TList[0].Token, Newtoken);
-                        }
-                        TList = Get();*/
-            //long GettedToken = TList[0].Token;
-
-
-            Authorization authorization = new Authorization();
-
-            Users UserToken = GetToken("");
+            Users UserToken = GetToken(token);
             
             string login = UserToken.Login;
             if (login == "admin")

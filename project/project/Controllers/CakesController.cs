@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using project.Models;
 using project.Services;
 using System.Data;
@@ -28,8 +29,9 @@ namespace project.Controllers
 
 
 
-        // GET: api/<ConfectioneryController>
         
+        [Authorize(Roles ="admin")]
+        //[Authorize(AuthenticationSchemes = "Bearer")] 
         [HttpGet]
         public ActionResult<List<Cakes>> Get()
         {
@@ -57,8 +59,9 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Cakes> Post([FromBody] Cakes cakes)
         {
+
             
-            if (tokenOperations.GetGroup() == true)
+            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
             {
                 cakesServise.Create(cakes);
                 return CreatedAtAction(nameof(Get), new { id = cakes.Id }, cakes);
@@ -73,7 +76,7 @@ namespace project.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Cakes cakes)
         {
-            if (tokenOperations.GetGroup() == true)
+            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
             {
                 var existingCakes = cakesServise.Get(id);
                 if (cakes == null)
@@ -91,7 +94,7 @@ namespace project.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            if (tokenOperations.GetGroup() == true)
+            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
             {
                 var cakes = cakesServise.Get(id);
                 if (cakes == null)
