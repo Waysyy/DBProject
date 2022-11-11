@@ -30,8 +30,8 @@ namespace project.Controllers
 
 
         
-        [Authorize(Roles ="admin")]
-        //[Authorize(AuthenticationSchemes = "Bearer")] 
+        /*[Authorize(Roles ="admin")]
+        [Authorize(AuthenticationSchemes = "Bearer")] */
         [HttpGet]
         public ActionResult<List<Cakes>> Get()
         {

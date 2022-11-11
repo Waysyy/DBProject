@@ -89,19 +89,7 @@ namespace project.Controllers
             public string Password { get; set; }
         }
 
-        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-        public class AuthorizeAttribute : Attribute, IAuthorizationFilter
-        {
-            public void OnAuthorization(AuthorizationFilterContext context)
-            {
-                var account = (LoginModel)context.HttpContext.Items["User"];
-                if (account == null)
-                {
-                    // not logged in
-                    context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
-                }
-            }
-        }
+        
 
 
         [HttpPost("/token")]
@@ -219,6 +207,20 @@ namespace project.Controllers
 
             // если пользователя не найдено
             return null;
+        }
+
+        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+        public class AuthorizeAttribute : Attribute, IAuthorizationFilter
+        {
+            public void OnAuthorization(AuthorizationFilterContext context)
+            {
+                var account = (LoginModel)context.HttpContext.Items["User"];
+                if (account == null)
+                {
+                    // not logged in
+                    context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                }
+            }
         }
     }
 }

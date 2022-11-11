@@ -1,13 +1,19 @@
+using AspNet.Security.OAuth.Validation;
 using DnsClient;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Options;
+using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using project;
 using project.Controllers;
 using project.Models;
 using project.Services;
+using System.Security.Cryptography.Xml;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,6 +58,13 @@ builder.Services.AddSwaggerGen(swagger =>
 
 
 #endregion
+
+
+
+builder.Services.AddAuthentication(OAuthValidationDefaults.AuthenticationScheme)
+.AddOAuthValidation();
+
+
 
 /*#region Authentication
 builder.Services.AddAuthentication(option =>
