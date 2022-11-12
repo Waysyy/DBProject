@@ -93,8 +93,11 @@ namespace project.Controllers
 
 
         [HttpPost("/token")]
-        public IActionResult Token([FromBody] LoginModel loginModel)
+        public async Task<IActionResult> Token([FromBody] LoginModel loginModel)
         {
+            
+            
+
             var identity = GetIdentity(loginModel.UserName, loginModel.Password);
             if (identity == null)
             {
@@ -117,7 +120,13 @@ namespace project.Controllers
                 access_token = encodedJwt,
                 username = identity.Name
             };
-
+            
+            /*if (identity != null)
+                HttpContext.Response.Cookies.Append(".AspNetCore.Application.Id", encodedJwt,
+                new CookieOptions
+                {
+                    MaxAge = TimeSpan.FromMinutes(60)
+                });*/
 
             DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, (DateTime.Today.Day + 2));
             var token = new BsonDocument("$set", new BsonDocument("token", encodedJwt));
@@ -125,8 +134,8 @@ namespace project.Controllers
             userServise.Update(loginModel.UserName, token);
             userServise.Update(loginModel.UserName, validDate);
             tokenOperations.Invoke(encodedJwt);
-            
 
+            //localStorage.setItem('authKey', 'the authorization token')
             return Json(response);
         }
         public static string HashPassword(string password)

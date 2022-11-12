@@ -2,6 +2,7 @@ using AspNet.Security.OAuth.Validation;
 using DnsClient;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Options;
@@ -18,82 +19,10 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-#region Swagger Configuration
-builder.Services.AddSwaggerGen(swagger =>
-{
-    //This is to generate the Default UI of Swagger Documentation
-    swagger.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Version = "v1",
-        Title = "JWT Token Authentication API",
-        Description = "ASP.NET Core 5.0 Web API"
-    });
-    // To Enable authorization using Swagger (JWT)
-    swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-    {
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
-        BearerFormat = "JWT",
-        In = ParameterLocation.Header,
-        
-    });
-    swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                          new OpenApiSecurityScheme
-                            {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.SecurityScheme,
-                                    Id = "Bearer"
-                                }
-                            },
-                            new string[] {}
-                    }
-                });
-});
-
-
-#endregion
-
-
-
-builder.Services.AddAuthentication(OAuthValidationDefaults.AuthenticationScheme)
-.AddOAuthValidation();
-
-
-
-/*#region Authentication
-builder.Services.AddAuthentication(option =>
-{
-    option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = false,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])) //Configuration["JwtToken:SecretKey"]
-    };
-});
-#endregion*/
-
 builder.Services.AddScoped<TokenOperations>();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUsersServise, UsersServise>();
-
-
-
 
 builder.Services.AddScoped<ICakesServise, CakesServise>();
 
@@ -118,23 +47,81 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+   
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        // укзывает, будет ли валидироваться издатель при валидации токена
+                        ValidateIssuer = true,
+                        // строка, представляющая издателя
+                        ValidIssuer = Authorization.ISSUER,
+
+                        // будет ли валидироваться потребитель токена
+                        ValidateAudience = true,
+                        // установка потребителя токена
+                        ValidAudience = Authorization.AUDIENCE,
+                        // будет ли валидироваться время существования
+                        ValidateLifetime = true,
+
+                        // установка ключа безопасности
+                        IssuerSigningKey = Authorization.GetSymmetricSecurityKey(),
+                        // валидация ключа безопасности
+                        ValidateIssuerSigningKey = true,
+                    };
+                });
+            builder.Services.AddControllers();
+            builder.Services.AddSwaggerGen(options =>
+                    {
+                        options.SwaggerDoc("v1", new OpenApiInfo
+                        {
+                            Version = "v1",
+                            Title = "JWT Token Authentication API",
+
+                        });
+                        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                        {
+                            Name = "Authorization",
+                            Type = SecuritySchemeType.Http,
+                            Scheme = "Bearer",
+                            BearerFormat = "JWT",
+                            In = ParameterLocation.Header,
+
+                        });
+                        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                            {
+                                {
+                                      new OpenApiSecurityScheme
+                                        {
+                                            Reference = new OpenApiReference
+                                            {
+                                                Type = ReferenceType.SecurityScheme,
+                                                Id = "Bearer"
+                                            }
+                                        },
+                                        new string[] {}
+                                }
+                            });
+                    });
 
 
 var app = builder.Build();
 
-/*if(Convert.ToString(token) == "0")
-{
-    app.MapGet("/", () => "Hello World!");
-}*/
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
-{
-   
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+        {
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnetClaimAuthorization v1"));
+        }
+
+
+app.UseStaticFiles();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseRouting();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

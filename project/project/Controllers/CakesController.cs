@@ -12,8 +12,11 @@ namespace project.Controllers
 {
 
 
-    [Route("api/[controller]")]
+    
+    
     [ApiController]
+    [Authorize]
+    [Route("[controller]")]
     public class CakesController : ControllerBase
     {
          
@@ -28,17 +31,13 @@ namespace project.Controllers
         }
 
 
-
-        
-        /*[Authorize(Roles ="admin")]
-        [Authorize(AuthenticationSchemes = "Bearer")] */
         [HttpGet]
         public ActionResult<List<Cakes>> Get()
         {
             
             return cakesServise.Get();
             
-                
+
         }
 
         // GET api/<ConfectioneryController>/5
@@ -55,29 +54,21 @@ namespace project.Controllers
             return cakes;
         }
 
-        // POST api/<ConfectioneryController>
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult<Cakes> Post([FromBody] Cakes cakes)
         {
 
-            
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
                 cakesServise.Create(cakes);
                 return CreatedAtAction(nameof(Get), new { id = cakes.Id }, cakes);
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
-
-
+            
         }
 
-        // PUT api/<ConfectioneryController>/5
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Cakes cakes)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var existingCakes = cakesServise.Get(id);
                 if (cakes == null)
                 {
@@ -85,17 +76,14 @@ namespace project.Controllers
                 }
                 cakesServise.Update(id, cakes);
                 return NoContent();
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
-        // DELETE api/<ConfectioneryController>/5
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var cakes = cakesServise.Get(id);
                 if (cakes == null)
                 {
@@ -103,9 +91,7 @@ namespace project.Controllers
                 }
                 cakesServise.Remove(cakes.Id);
                 return Ok($"Торт с ID = {id} удален ");
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
     }
 }

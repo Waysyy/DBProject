@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using project.Models;
 using project.Services;
 
 namespace project.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Route("[controller]")]
     public class IngredientsController : Controller
     {
         private readonly IIngredientsServise ingredientsServise;
@@ -35,7 +37,7 @@ namespace project.Controllers
             return ingredients;
         }
 
-        // POST api/<ConfectioneryController>
+       [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult<Ingredients> Post([FromBody] Ingredients ingredients)
         {
@@ -48,7 +50,7 @@ namespace project.Controllers
                 return NotFound($"У вас недостаточно прав");
         }
 
-        // PUT api/<ConfectioneryController>/5
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Ingredients ingredients)
         {
@@ -66,7 +68,7 @@ namespace project.Controllers
                 return NotFound($"У вас недостаточно прав");
         }
 
-        // DELETE api/<ConfectioneryController>/5
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
