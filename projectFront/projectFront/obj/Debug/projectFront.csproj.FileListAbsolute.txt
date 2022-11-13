@@ -244,3 +244,7 @@ A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.Orders
 A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.ClientsForm.resources
 A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.IngredientsForm.resources
 A:\GitProjects\DBProject\projectFront\projectFront\obj\Debug\projectFront.PersonalsForm.resources
+A:\GitProjects\DBProject\projectFront\projectFront\bin\Debug\RestSharp.dll
+A:\GitProjects\DBProject\projectFront\projectFront\bin\Debug\System.Web.Http.WebHost.dll
+A:\GitProjects\DBProject\projectFront\projectFront\bin\Debug\RestSharp.xml
+A:\GitProjects\DBProject\projectFront\projectFront\bin\Debug\System.Web.Http.WebHost.xml

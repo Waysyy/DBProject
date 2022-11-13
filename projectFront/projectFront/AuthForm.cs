@@ -1,31 +1,50 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Graph;
+using MongoDB.Bson;
+using Newtonsoft.Json;
 using projectFront.Controllers;
 using projectFront.Models;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using ZstdSharp.Unsafe;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace projectFront
 {
     public partial class AuthForm : Form
     {
+        static HttpClient httpClient = new HttpClient();
         UsersController usersController = new UsersController();
 
+        
         public AuthForm()
         {
             InitializeComponent();
         }
-
+        public string tok { get; set; } = string.Empty;
         private void button1_Click(object sender, EventArgs e)
         {
-            ActionResult<Users> userResult = usersController.Get(textBox1.Text, textBox2.Text);
-            
+
+
+
+            /*ActionResult<Users> userResult = usersController.Get(textBox1.Text, textBox2.Text);
+
             if (userResult.Value != null)
             {
                 Form menuForm = new mainMenu();
@@ -33,10 +52,87 @@ namespace projectFront
                 this.Hide();
             }
             else
-                MessageBox.Show("Кажется вы ошиблись при вводе");
-            
-           
+                MessageBox.Show("Кажется вы ошиблись при вводе");*/
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            ApplicationDataContainer.Values localSettings;
+            localSettings.Values["exampleSetting"] = "Hello Windows";
+            GetValues();
+            //Get(tok);
 
         }
+        public async Task LogIn()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7221/token"))
+                {
+                    //request.Headers.TryAddWithoutValidation("accept", "*/*");
+
+                    /*request.Content = new StringContent("{\n  \"userName\": \"user\",\n  \"password\": \"user\"\n}");
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("text/json");
+
+                    var response = await httpClient.SendAsync(request);
+                    string token = response.Content.ReadAsStringAsync().Result;
+                    token = token.Remove(0, 17);
+                    token = token.Remove(369, 21);
+                    await get(token);*/
+                    
+                    /*string readResponse = response.Content.ReadAsStringAsync().Result;
+                    readResponse = readResponse.Remove(0, 17);
+                    readResponse = readResponse.Remove(369, 21);
+                    //string token = readResponse.Remove(369, 21);
+                    //label4.Text = readResponse.Remove(369, 21); ;*/
+                }
+            }
+        }
+        static string GetValues()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7221/token"))
+                {
+                    request.Headers.TryAddWithoutValidation("accept", "*/*");
+
+                    request.Content = new StringContent("{\n  \"userName\": \"user\",\n  \"password\": \"user\"\n}");
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("text/json");
+
+                    var response =  httpClient.SendAsync(request).Result;
+                    string token = response.Content.ReadAsStringAsync().Result;
+                    token = token.Remove(0, 17);
+                    token = token.Remove(368, 20);
+                    AuthForm a = new AuthForm();
+                    a.tok += token;
+                    return token;
+                    
+                }
+            }
+        }
+        static string Get(string token)
+        {
+
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://localhost:7221/Cakes"))
+                {
+                    
+                    request.Headers.TryAddWithoutValidation("accept", "text/plain");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    var response =  httpClient.SendAsync(request).Result;
+
+                    return token = response.Content.ReadAsStringAsync().Result;
+
+                }
+            }
+        }
+       public string GetToken(string token)
+        {
+            
+            return token;
+            
+        }
     }
+
+
 }
