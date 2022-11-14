@@ -20,7 +20,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Xamarin.Forms.PlatformConfiguration;
+using System.Windows;
+
 using ZstdSharp.Unsafe;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -54,7 +55,8 @@ namespace projectFront
             else
                 MessageBox.Show("Кажется вы ошиблись при вводе");*/
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            ApplicationDataContainer.Values localSettings;
+            
+            
             localSettings.Values["exampleSetting"] = "Hello Windows";
             GetValues();
             //Get(tok);
