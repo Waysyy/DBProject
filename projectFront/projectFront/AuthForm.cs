@@ -21,10 +21,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows;
+using System.IO;
 
 using ZstdSharp.Unsafe;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Newtonsoft.Json.Linq;
 
 namespace projectFront
 {
@@ -54,12 +56,19 @@ namespace projectFront
             }
             else
                 MessageBox.Show("Кажется вы ошиблись при вводе");*/
-            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            
-            
-            localSettings.Values["exampleSetting"] = "Hello Windows";
-            GetValues();
+           
+            FileStream fs = new FileStream("token.txt", FileMode.OpenOrCreate);
+            byte[] buffer = Encoding.Default.GetBytes(GetValues());
+            // запись массива байтов в файл
+            fs.Write(buffer, 0, buffer.Length);
+            fs.Close();
+            //File.OpenOrCerate("token.txt");
+
+            System.IO.File.Encrypt("token.txt");
+            string text1 = System.IO.File.ReadAllText("token.txt");
+            //System.IO.File.Decrypt("token.txt");
             //Get(tok);
+           // string text = System.IO.File.ReadAllText("token.txt");
 
         }
         public async Task LogIn()
