@@ -41,21 +41,17 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Orders> Post([FromBody] Orders orders)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 ordersServise.Create(orders);
                 return CreatedAtAction(nameof(Get), new { id = orders.Id }, orders);
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
         [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Orders orders)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var existingOrders = ordersServise.Get(id);
                 if (orders == null)
                 {
@@ -63,17 +59,14 @@ namespace project.Controllers
                 }
                 ordersServise.Update(id, orders);
                 return NoContent();
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var orders = ordersServise.Get(id);
                 if (orders == null)
                 {
@@ -81,9 +74,7 @@ namespace project.Controllers
                 }
                 ordersServise.Remove(orders.Id);
                 return Ok($"Заказ с ID = {id} удален ");
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
     }
 }

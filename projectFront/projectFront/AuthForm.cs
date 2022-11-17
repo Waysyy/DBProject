@@ -56,47 +56,31 @@ namespace projectFront
             }
             else
                 MessageBox.Show("Кажется вы ошиблись при вводе");*/
-           
+            System.IO.File.Decrypt("token.txt");
             FileStream fs = new FileStream("token.txt", FileMode.OpenOrCreate);
-            byte[] buffer = Encoding.Default.GetBytes(GetValues());
-            // запись массива байтов в файл
-            fs.Write(buffer, 0, buffer.Length);
-            fs.Close();
-            //File.OpenOrCerate("token.txt");
-
-            System.IO.File.Encrypt("token.txt");
-            string text1 = System.IO.File.ReadAllText("token.txt");
-            //System.IO.File.Decrypt("token.txt");
-            //Get(tok);
-           // string text = System.IO.File.ReadAllText("token.txt");
-
-        }
-        public async Task LogIn()
-        {
-            using (var httpClient = new HttpClient())
+            string tokenVal = GetValues(textBox1.Text, textBox2.Text);
+            if (tokenVal != string.Empty)
             {
-                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7221/token"))
-                {
-                    //request.Headers.TryAddWithoutValidation("accept", "*/*");
+                byte[] buffer = Encoding.Default.GetBytes(tokenVal);
 
-                    /*request.Content = new StringContent("{\n  \"userName\": \"user\",\n  \"password\": \"user\"\n}");
-                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("text/json");
+                // запись массива байтов в файл
+                fs.Write(buffer, 0, buffer.Length);
+                fs.Close();
 
-                    var response = await httpClient.SendAsync(request);
-                    string token = response.Content.ReadAsStringAsync().Result;
-                    token = token.Remove(0, 17);
-                    token = token.Remove(369, 21);
-                    await get(token);*/
-                    
-                    /*string readResponse = response.Content.ReadAsStringAsync().Result;
-                    readResponse = readResponse.Remove(0, 17);
-                    readResponse = readResponse.Remove(369, 21);
-                    //string token = readResponse.Remove(369, 21);
-                    //label4.Text = readResponse.Remove(369, 21); ;*/
-                }
+
+                
+                string text1 = System.IO.File.ReadAllText("token.txt");
+                System.IO.File.Encrypt("token.txt");
+                Form menuForm = new mainMenu();
+                menuForm.Show();
+                this.Hide();
             }
+            else
+                MessageBox.Show("Проверьте введенные данные");
+
         }
-        static string GetValues()
+        
+        static string GetValues(string login, string password)
         {
             using (var httpClient = new HttpClient())
             {
@@ -104,39 +88,31 @@ namespace projectFront
                 {
                     request.Headers.TryAddWithoutValidation("accept", "*/*");
 
-                    request.Content = new StringContent("{\n  \"userName\": \"user\",\n  \"password\": \"user\"\n}");
+                    request.Content = new StringContent("{\n  \"userName\": \"" + login + "\",\n  \"password\": \""+password+"\"\n}");
                     request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("text/json");
 
                     var response =  httpClient.SendAsync(request).Result;
                     string token = response.Content.ReadAsStringAsync().Result;
-                    token = token.Remove(0, 17);
-                    token = token.Remove(368, 20);
-                    AuthForm a = new AuthForm();
-                    a.tok += token;
-                    return token;
+                    if(response.StatusCode == HttpStatusCode.OK)
+                    {
+                        token = token.Remove(0, 17);
+                        token = token.Remove(token.Length-20, 20);
+                        AuthForm a = new AuthForm();
+                        a.tok += token;
+                        return token;
+                    }
+                    else
+                    {
+                        
+                        return null; 
+                    }
+                    
+                    
                     
                 }
             }
         }
-        static string Get(string token)
-        {
-
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://localhost:7221/Cakes"))
-                {
-                    
-                    request.Headers.TryAddWithoutValidation("accept", "text/plain");
-                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
-
-                    var response =  httpClient.SendAsync(request).Result;
-
-                    return token = response.Content.ReadAsStringAsync().Result;
-
-                }
-            }
-        }
+        
        public string GetToken(string token)
         {
             

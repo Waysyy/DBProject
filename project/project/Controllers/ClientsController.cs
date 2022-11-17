@@ -41,21 +41,17 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Clients> Post([FromBody] Clients clients)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 clientsServise.Create(clients);
                 return CreatedAtAction(nameof(Get), new { id = clients.Id }, clients);
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
         [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Clients clients)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var existingClients = clientsServise.Get(id);
                 if (clients == null)
                 {
@@ -63,17 +59,14 @@ namespace project.Controllers
                 }
                 clientsServise.Update(id, clients);
                 return NoContent();
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var clients = clientsServise.Get(id);
                 if (clients == null)
                 {
@@ -81,9 +74,7 @@ namespace project.Controllers
                 }
                 clientsServise.Remove(clients.Id);
                 return Ok($"Клиент с ID = {id} удален ");
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
     }
 }

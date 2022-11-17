@@ -41,21 +41,17 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Personals> Post([FromBody] Personals personals)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 personalsServise.Create(personals);
                 return CreatedAtAction(nameof(Get), new { id = personals.Id }, personals);
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
         [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Personals personals)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var existingPersonals = personalsServise.Get(id);
                 if (personals == null)
                 {
@@ -63,17 +59,14 @@ namespace project.Controllers
                 }
                 personalsServise.Update(id, personals);
                 return NoContent();
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var personals = personalsServise.Get(id);
                 if (personals == null)
                 {
@@ -81,9 +74,7 @@ namespace project.Controllers
                 }
                 personalsServise.Remove(personals.Id);
                 return Ok($"Работник с ID = {id} удален ");
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
     }
 }

@@ -41,21 +41,17 @@ namespace project.Controllers
         [HttpPost]
         public ActionResult<Ingredients> Post([FromBody] Ingredients ingredients)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 ingredientsServise.Create(ingredients);
                 return CreatedAtAction(nameof(Get), new { id = ingredients.Id }, ingredients);
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
         [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Ingredients ingredients)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+           
                 var existingIngredients = ingredientsServise.Get(id);
                 if (ingredients == null)
                 {
@@ -63,17 +59,14 @@ namespace project.Controllers
                 }
                 ingredientsServise.Update(id, ingredients);
                 return NoContent();
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
 
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            if (tokenOperations.GetGroup(Request.Headers.Values.ElementAt(6)) == true)
-            {
+            
                 var ingredients = ingredientsServise.Get(id);
                 if (ingredients == null)
                 {
@@ -81,9 +74,7 @@ namespace project.Controllers
                 }
                 ingredientsServise.Remove(ingredients.Id);
                 return Ok($"Ингредиент с ID = {id} удален ");
-            }
-            else
-                return NotFound($"У вас недостаточно прав");
+            
         }
     }
 }

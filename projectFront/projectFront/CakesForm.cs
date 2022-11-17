@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Graph;
 using MongoDB.Bson;
+using Newtonsoft.Json;
 using projectFront.Controllers;
 using projectFront.Models;
 using System;
@@ -9,8 +10,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using System.Web.Http.Results;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -84,9 +88,12 @@ namespace projectFront
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string token = System.IO.File.ReadAllText("token.txt");
+            token = token.Remove(token.Length - 1, 1);
+         
+            List<Cakes> listRes = new List<Cakes>();
             
-            ActionResult<List<Cakes>> cakesResult = cakesController.Get();
-            dataGridView1.DataSource = cakesResult.Value;
+            Deserilize(Get(token));
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -100,6 +107,12 @@ namespace projectFront
                 List<Cakes> listRes = new List<Cakes>();
                 listRes.Add(cakesResult.Value);
                 dataGridView2.DataSource = listRes;
+
+                string token = System.IO.File.ReadAllText("token.txt");
+                token = token.Remove(token.Length - 1, 1);
+
+                Deserilize(GetID(token, textBox1.Text));
+
             }
             
         }
@@ -110,11 +123,16 @@ namespace projectFront
             if (checkMistakesID() == true)
             {
                 
-                ActionResult<Cakes> cakesResult = cakesController.Get(textBox1.Text);
+                /*ActionResult<Cakes> cakesResult = cakesController.Get(textBox1.Text);
 
                 List<Cakes> listRes = new List<Cakes>();
                 listRes.Add(cakesResult.Value);
                 dataGridView1.DataSource = listRes;
+*/
+                string token = System.IO.File.ReadAllText("token.txt");
+                token = token.Remove(token.Length - 1, 1);
+
+                Deserilize(GetID(token, textBox1.Text));
             }
         }
 
@@ -160,14 +178,17 @@ namespace projectFront
             if(CheckDatagrid() == true)
             {
                 Cakes cakes = new Cakes();
-                cakes.Id = "";
+                //cakes.Id = "";
 
                 cakes.Name = (string)dataGridView2[1, 0].Value;
                 cakes.Type = (string)dataGridView2[2, 0].Value;
                 cakes.Weight = (string)dataGridView2[3, 0].Value;
                 cakes.Price = (int)dataGridView2[4, 0].Value;
 
-                cakesController.Post(cakes);
+                string token = System.IO.File.ReadAllText("token.txt");
+                token = token.Remove(token.Length - 1, 1);
+
+                Post(token,cakes);
                 Cleaner();
             }
            
@@ -215,6 +236,74 @@ namespace projectFront
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        static string Get(string token)
+        {
+
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://localhost:7221/Cakes"))
+                {
+
+                    request.Headers.TryAddWithoutValidation("accept", "text/plain");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    //List<string> postList = new List<string>();
+
+                    var response = httpClient.SendAsync(request).Result;
+                    
+                    return token = response.Content.ReadAsStringAsync().Result;
+
+
+
+                }
+            }
+        }
+
+        static async Task Post(string token, Cakes cake)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7221/Cakes"))
+                {
+                    request.Headers.TryAddWithoutValidation("accept", "text/plain");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    request.Content = new StringContent("{\n  \"id\": \"\",\n  \"name\": \"" + cake.Name+ "\",\n  \"type\": \""+cake.Type+"\",\n  \"weight\": \""+cake.Weight+"\",\n  \"price\": "+cake.Price+ ",\n  \"ingredients\": [\n    \"string\"\n  ]\n}");
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                    var response = await httpClient.SendAsync(request);
+                    var t = response.Content.ReadAsStringAsync().Result;
+                    //return response;
+                }
+            }
+        }
+
+        static string GetID(string token, string id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://localhost:7221/Cakes/"+id))
+                {
+                    request.Headers.TryAddWithoutValidation("accept", "text/plain");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    var response = httpClient.SendAsync(request).Result;
+
+                    return token = response.Content.ReadAsStringAsync().Result;
+                }
+            }
+        }
+
+        public void Deserilize(string json)
+        {
+            var jobj = JsonConvert.DeserializeObject<List<Cakes>>(json);
+            if (jobj != null)
+            {
+                dataGridView1.AutoGenerateColumns = true;
+                dataGridView1.DataSource = jobj;
+            }
         }
     }
 }
