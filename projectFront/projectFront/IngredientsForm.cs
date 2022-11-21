@@ -84,6 +84,7 @@ namespace projectFront
         {
             Form thisForm = Application.OpenForms[1];
             thisForm.Show();
+            Application.Exit();
         }
 
         private void button2_Click(object sender, EventArgs e)

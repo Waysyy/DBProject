@@ -51,5 +51,10 @@ namespace projectFront
             ingredientsForm.Show();
             this.Hide();
         }
+
+        private void mainMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -114,6 +114,7 @@
             this.Controls.Add(this.button1);
             this.Name = "mainMenu";
             this.Text = "mainMenu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.mainMenu_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

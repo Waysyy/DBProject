@@ -234,6 +234,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "OrdersForm";
             this.Text = "OrdersForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form3_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -142,6 +142,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "AuthForm";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

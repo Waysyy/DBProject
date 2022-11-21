@@ -32,7 +32,7 @@ namespace projectFront
 {
     public partial class AuthForm : Form
     {
-        static HttpClient httpClient = new HttpClient();
+        
         
 
         
@@ -60,6 +60,7 @@ namespace projectFront
                 Form menuForm = new mainMenu();
                 menuForm.Show();
                 this.Hide();
+                
             }
             else
                 MessageBox.Show("Проверьте введенные данные");
@@ -113,6 +114,11 @@ namespace projectFront
             
             return token;
             
+        }
+
+        private void AuthForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 

@@ -66,6 +66,7 @@ namespace projectFront
         {
             Form thisForm = Application.OpenForms[1];
             thisForm.Show();
+            
         }
         private void getInfo_Click(object sender, EventArgs e)
         {
