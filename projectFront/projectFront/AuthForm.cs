@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Graph;
 using MongoDB.Bson;
 using Newtonsoft.Json;
-using projectFront.Controllers;
+
 using projectFront.Models;
 using RestSharp;
 using System;
@@ -21,7 +21,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows;
-using System.IO;
+
 
 using ZstdSharp.Unsafe;
 using static System.Net.Mime.MediaTypeNames;
@@ -33,7 +33,7 @@ namespace projectFront
     public partial class AuthForm : Form
     {
         static HttpClient httpClient = new HttpClient();
-        UsersController usersController = new UsersController();
+        
 
         
         public AuthForm()
@@ -44,28 +44,14 @@ namespace projectFront
         private void button1_Click(object sender, EventArgs e)
         {
 
-
-
-            /*ActionResult<Users> userResult = usersController.Get(textBox1.Text, textBox2.Text);
-
-            if (userResult.Value != null)
-            {
-                Form menuForm = new mainMenu();
-                menuForm.Show();
-                this.Hide();
-            }
-            else
-                MessageBox.Show("Кажется вы ошиблись при вводе");*/
             System.IO.File.Decrypt("token.txt");
-            FileStream fs = new FileStream("token.txt", FileMode.OpenOrCreate);
+            
             string tokenVal = GetValues(textBox1.Text, textBox2.Text);
-            if (tokenVal != string.Empty)
+            if (tokenVal != null)
             {
-                byte[] buffer = Encoding.Default.GetBytes(tokenVal);
-
-                // запись массива байтов в файл
-                fs.Write(buffer, 0, buffer.Length);
-                fs.Close();
+               
+                System.IO.File.WriteAllText("token.txt", tokenVal);
+                
 
 
                 
@@ -95,10 +81,19 @@ namespace projectFront
                     string token = response.Content.ReadAsStringAsync().Result;
                     if(response.StatusCode == HttpStatusCode.OK)
                     {
-                        token = token.Remove(0, 17);
-                        token = token.Remove(token.Length-20, 20);
-                        AuthForm a = new AuthForm();
-                        a.tok += token;
+                        
+                        if (token.Contains("admin"))
+                        {
+                            token = token.Remove(0, 17);
+                            token = token.Remove(token.Length - 21, 21);
+                        }
+                        else
+                        {
+                            token = token.Remove(0, 17);
+                            token = token.Remove(token.Length - 20, 20);
+                        }
+
+                        
                         return token;
                     }
                     else

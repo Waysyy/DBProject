@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using projectFront.Controllers;
+using Newtonsoft.Json;
+
 using projectFront.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,11 +18,7 @@ namespace projectFront
 {
     public partial class IngredientsForm : Form
     {
-        public IngredientsForm()
-        {
-            InitializeComponent();
-        }
-
+        bool buttonChangeCheck = false;
         public bool checkMistakesID()
         {
             if (textBox1.Text == String.Empty)
@@ -30,18 +29,47 @@ namespace projectFront
             else
                 return true;
         }
+        public bool CheckDatagrid()
+        {
+            bool check = false;
+            for (int j = 0; j < dataGridView2.RowCount; ++j)
+            {
+                for (int i = 1; i < dataGridView2.ColumnCount; ++i)
+                {
+                    if (Convert.ToString(dataGridView2[i, j].Value) == string.Empty || Convert.ToString(dataGridView2[i, j].Value) == " ")
+                    {
+                        check = false;
+                        MessageBox.Show("Заполните все поля");
+                        break;
+                    }
+                    else
+                        check = true;
+                }
+            }
+            return check;
+        }
+        public IngredientsForm()
+        {
+            InitializeComponent();
+        }
+
+     
 
         public void Cleaner()
         {
+            dataGridView1 = null;
             textBox1.Text = null;
             dataGridView2 = null;
         }
 
-        IngredientsController ingredientsController = new IngredientsController();
+        
         private void getInfo_Click(object sender, EventArgs e)
         {
-            ActionResult<List<Ingredients>> ingredientsResult = ingredientsController.Get();
-            dataGridView1.DataSource = ingredientsResult.Value;
+
+            System.IO.File.Decrypt("token.txt");
+            string token = System.IO.File.ReadAllText("token.txt");
+
+            Deserilize(Get(token));
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -60,17 +88,22 @@ namespace projectFront
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (buttonChangeCheck == true && CheckDatagrid() == true)
+            {
+                
+                Ingredients ingredients = new Ingredients();
+                ingredients.Id = textBox1.Text;
+                ingredients.Name = (string)dataGridView2[1, 0].Value;
+                ingredients.ExplorationDate = (DateTime)dataGridView2[2, 0].Value;
+                ingredients.InStock = (string)dataGridView2[3, 0].Value;
 
-            Ingredients ingredients = new Ingredients();
-            ingredients.Id = textBox1.Text;
-            ingredients.Name = (string)dataGridView2[1, 0].Value;
-            ingredients.ExplorationDate = (DateTime)dataGridView2[2, 0].Value;
-            ingredients.InStock = (string)dataGridView2[3, 0].Value;
-           
+                string token = System.IO.File.ReadAllText("token.txt");
+                ChangeID(token, textBox1.Text, ingredients);
 
 
-            ingredientsController.Put(textBox1.Text, ingredients);
-            Cleaner();
+            }
+            else
+                MessageBox.Show("Вы забыли нажать кнопку <<изменить по id>>");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -79,13 +112,15 @@ namespace projectFront
             if (checkMistakesID() == true)
             {
 
-                ActionResult<Ingredients> ingredientsResult = ingredientsController.Get(textBox1.Text);
+                buttonChangeCheck = true;
 
-                List<Ingredients> listRes = new List<Ingredients>();
-                listRes.Add(ingredientsResult.Value);
-                dataGridView2.DataSource = listRes;
+                string token = System.IO.File.ReadAllText("token.txt");
+
+
+                DeserilizeToDG2(GetID(token, textBox1.Text));
+
+
             }
-
         }
 
         private void getInfoId_Click(object sender, EventArgs e)
@@ -94,24 +129,19 @@ namespace projectFront
             if (checkMistakesID() == true)
             {
 
-                ActionResult<Ingredients> ingredientsResult = ingredientsController.Get(textBox1.Text);
+                string token = System.IO.File.ReadAllText("token.txt");
 
-                List<Ingredients> listRes = new List<Ingredients>();
-                listRes.Add(ingredientsResult.Value);
-                dataGridView1.DataSource = listRes;
+                DeserilizeNotArr(GetID(token, textBox1.Text));
             }
         }
 
         private void deleteInfoId_Click(object sender, EventArgs e)
         {
-
             if (checkMistakesID() == true)
             {
-                ActionResult result2 = null;
-                ActionResult result = ingredientsController.Delete(textBox1.Text);
-                var result3 = (OkObjectResult)result; //Код запроса
-                if (result != result3.Value)
-                { MessageBox.Show("Объект удален"); }
+                string token = System.IO.File.ReadAllText("token.txt");
+
+                DeleteId(token, textBox1.Text);
 
             }
         }
@@ -121,7 +151,7 @@ namespace projectFront
             //Cleaner();
             List<Ingredients> postList = new List<Ingredients>();
             Ingredients ingredients = new Ingredients();
-
+            ingredients.Id = "Automatic";
             ingredients.Name = "";
             ingredients.ExplorationDate = new DateTime();
             ingredients.InStock = "";
@@ -139,8 +169,162 @@ namespace projectFront
             ingredients.ExplorationDate = (DateTime)dataGridView2[2, 0].Value;
             ingredients.InStock = (string)dataGridView2[3, 0].Value;
 
-            ingredientsController.Post(ingredients);
-            Cleaner();
+            string token = System.IO.File.ReadAllText("token.txt");
+            Post(token, ingredients);
+        }
+        static string Get(string token)
+        {
+
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://localhost:7221/Ingredients"))
+                {
+
+                    request.Headers.TryAddWithoutValidation("accept", "text/plain");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    var response = httpClient.SendAsync(request).Result;
+
+                    return token = response.Content.ReadAsStringAsync().Result;
+
+
+
+                }
+            }
+        }
+
+        static async Task Post(string token, Ingredients ingredients)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7221/Ingredients"))
+                {
+                    request.Headers.TryAddWithoutValidation("accept", "*/*");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    request.Content = new StringContent("{\n  \"id\": \"\",\n  \"name\": \""+ingredients.Name+"\",\n  \"explorationDate\": \""+ ($"{ingredients.ExplorationDate:s}") + "\",\n  \"inStock\": \""+ingredients.InStock+"\"\n}");
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                    var response = await httpClient.SendAsync(request);
+                    var t = response.Content.ReadAsStringAsync().Result;
+                    if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    { MessageBox.Show("У вас недостаточно прав"); }
+                    if (response.StatusCode == System.Net.HttpStatusCode.Created)
+                    { MessageBox.Show("Готово"); }
+                    else
+                    { MessageBox.Show("Ошибочка " + response.StatusCode); }
+
+                }
+            }
+        }
+
+        static string GetID(string token, string id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://localhost:7221/Ingredients/" + id))
+                {
+                    request.Headers.TryAddWithoutValidation("accept", "text/plain");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    var response = httpClient.SendAsync(request).Result;
+
+                    return token = response.Content.ReadAsStringAsync().Result;
+                }
+            }
+        }
+
+        static async Task ChangeID(string token, string id, Ingredients ingredients)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("PUT"), "https://localhost:7221/Ingredients/" + id))
+                {
+                    request.Headers.TryAddWithoutValidation("accept", "*/*");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    request.Content = new StringContent("{\n  \"id\": \"" + id + "\",\n  \"name\": \"" + ingredients.Name + "\",\n  \"explorationDate\": \"" + ($"{ingredients.ExplorationDate:s}") + "\",\n  \"inStock\": \"" + ingredients.InStock + "\"\n}");
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                    var response = await httpClient.SendAsync(request);
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    { MessageBox.Show("У вас недостаточно прав"); }
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    { MessageBox.Show("Готово"); }
+                    else
+                    { MessageBox.Show("Ошибочка " + response.StatusCode); }
+                }
+            }
+        }
+
+        static async Task DeleteId(string token, string id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("DELETE"), "https://localhost:7221/Ingredients/" + id))
+                {
+                    request.Headers.TryAddWithoutValidation("accept", "*/*");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
+
+                    var response = await httpClient.SendAsync(request);
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    { MessageBox.Show("У вас недостаточно прав"); }
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    { MessageBox.Show("Готово"); }
+                    else
+                    { MessageBox.Show("Ошибочка " + response.StatusCode); }
+
+                }
+            }
+        }
+
+        public void Deserilize(string json)
+        {
+            try
+            {
+                var jobj = JsonConvert.DeserializeObject<List<Ingredients>>(json);
+                if (jobj != null)
+                {
+                    dataGridView1.AutoGenerateColumns = true;
+                    dataGridView1.DataSource = jobj;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
+        }
+        public void DeserilizeNotArr(string json)
+        {
+            try
+            {
+                var jobj = JsonConvert.DeserializeObject<Ingredients>(json);
+                if (jobj != null)
+                {
+                    List<Ingredients> listRes = new List<Ingredients>();
+                    listRes.Add(jobj);
+                    dataGridView1.AutoGenerateColumns = true;
+                    dataGridView1.DataSource = listRes;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
+        }
+
+        public void DeserilizeToDG2(string json)
+        {
+            try
+            {
+                var jobj = JsonConvert.DeserializeObject<Ingredients>(json);
+                if (jobj != null)
+                {
+                    List<Ingredients> listRes = new List<Ingredients>();
+                    listRes.Add(jobj);
+                    dataGridView2.AutoGenerateColumns = true;
+                    dataGridView2.DataSource = listRes;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
+
         }
     }
 }
