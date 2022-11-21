@@ -326,5 +326,10 @@ namespace projectFront
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
 
         }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            Cleaner();
+        }
     }
 }
