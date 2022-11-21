@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.DataProtection.XmlEncryption;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Graph.SecurityNamespace;
 using Newtonsoft.Json;
 using projectFront.Models;
 using System;
@@ -47,9 +48,9 @@ namespace projectFront
 
         public void Cleaner()
         {
-            dataGridView1 = null;
+            dataGridView1.DataSource = new object();
             textBox1.Text = null;
-            dataGridView2 = null;
+            dataGridView2.DataSource = new object();
         }
 
         
@@ -334,7 +335,7 @@ namespace projectFront
                     dataGridView1.DataSource = jobj;
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
+            catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n" + ex); }
         }
         public void DeserilizeNotArr(string json)
         {
@@ -348,7 +349,7 @@ namespace projectFront
                 dataGridView1.DataSource = listRes;
             }
         }
-            catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
+            catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n" + ex); }
         }
 
         public void DeserilizeToDG2(string json)
@@ -363,7 +364,7 @@ namespace projectFront
                 dataGridView2.DataSource = listRes;
             }
             }
-            catch(Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
+            catch(Exception ex) { MessageBox.Show("Ошибочка вышла \n" + ex); }
 
         }
 

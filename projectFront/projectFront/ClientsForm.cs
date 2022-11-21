@@ -55,9 +55,9 @@ namespace projectFront
 
         public void Cleaner()
         {
-            dataGridView1 = null;
+            dataGridView1.DataSource = new object();
             textBox1.Text = null;
-            dataGridView2 = null;
+            dataGridView2.DataSource = new object();
         }
 
         
