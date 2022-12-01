@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "A:\\GitProjects\\DBProject\\project\\project\\project.csproj": {}
+    "D:\\DBProject\\project\\project\\project.csproj": {}
   },
   "projects": {
-    "A:\\GitProjects\\DBProject\\project\\project\\project.csproj": {
+    "D:\\DBProject\\project\\project\\project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "A:\\GitProjects\\DBProject\\project\\project\\project.csproj",
+        "projectUniqueName": "D:\\DBProject\\project\\project\\project.csproj",
         "projectName": "project",
-        "projectPath": "A:\\GitProjects\\DBProject\\project\\project\\project.csproj",
+        "projectPath": "D:\\DBProject\\project\\project\\project.csproj",
         "packagesPath": "C:\\Users\\ntart\\.nuget\\packages\\",
-        "outputPath": "A:\\GitProjects\\DBProject\\project\\project\\obj\\",
+        "outputPath": "D:\\DBProject\\project\\project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\ntart\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,64 +43,17 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "AspNet.Security.OAuth.Validation": {
-              "target": "Package",
-              "version": "[2.0.0, )"
-            },
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[6.0.11, )"
-            },
-            "Microsoft.AspNetCore.Identity.UI": {
-              "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "Microsoft.Azure.Functions.Extensions": {
-              "target": "Package",
-              "version": "[1.1.0, )"
-            },
-            "Microsoft.Identity.Web": {
-              "target": "Package",
-              "version": "[1.25.5, )"
-            },
-            "Microsoft.IdentityModel.Tokens": {
-              "target": "Package",
-              "version": "[6.25.0, )"
-            },
-            "MongoDB.Driver": {
-              "target": "Package",
-              "version": "[2.18.0, )"
-            },
-            "Newtonsoft.Json.Bson": {
-              "target": "Package",
-              "version": "[1.0.2, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.2.3, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

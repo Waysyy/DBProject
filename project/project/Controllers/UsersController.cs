@@ -37,50 +37,7 @@ namespace project.Controllers
 
         TokenOperations tokenOperations = new TokenOperations();
 
-        /*[HttpGet("{login}")]
-        public ActionResult<Users> Get(string login, string password)
-        {
-            var user = userServise.Get(login, password);
-            if (user == null)
-            {
-                return NotFound($"Пользователь с login = {login} не найден ");
-            }
-            if (user.TokenDate == DateTime.Today)
-            {
-                Random rnd = new Random();
-                long value = rnd.Next(100000000, 199999999);
-                var Newtoken = new BsonDocument("$set", new BsonDocument("token", value));
-
-                DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, (DateTime.Today.Day + 2));
-                var tokenDate = new BsonDocument("$set", new BsonDocument("tokenDate", date));
-                var validDate = new BsonDocument("$set", new BsonDocument("valid", date));
-                userServise.Update(login, Newtoken);
-                userServise.Update(login, tokenDate);
-                List<Tokens> TList = tokenOperations.Get();
-                long GettedToken = TList[0].Token;
-                tokenOperations.Update(GettedToken, Newtoken);
-                tokenOperations.Update(GettedToken, validDate);
-            }
-            List<Tokens> TokList = tokenOperations.Get();
-            string lastUser = TokList[0].LastUser;
-            string currentUser = user.Login;
-
-            if (lastUser != currentUser)
-            {
-                var lastuser = new BsonDocument("$set", new BsonDocument("token", user.Token));
-                var Newtoken = new BsonDocument("$set", new BsonDocument("lastUser", user.Login));
-                List<Tokens> TList = tokenOperations.Get();
-                long GettedToken = TList[0].Token;
-                tokenOperations.Update(GettedToken, Newtoken);
-                tokenOperations.Update(GettedToken, lastuser);
-            }
-            
-            //GetToken(user.Token);
-             return user;
-
-
-
-        }*/
+       
         public class LoginModel
         {
             [Required]
@@ -121,12 +78,6 @@ namespace project.Controllers
                 username = identity.Name
             };
             
-            /*if (identity != null)
-                HttpContext.Response.Cookies.Append(".AspNetCore.Application.Id", encodedJwt,
-                new CookieOptions
-                {
-                    MaxAge = TimeSpan.FromMinutes(60)
-                });*/
 
             DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, (DateTime.Today.Day + 2));
             var token = new BsonDocument("$set", new BsonDocument("token", encodedJwt));

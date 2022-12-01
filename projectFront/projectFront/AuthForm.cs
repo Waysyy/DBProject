@@ -56,7 +56,7 @@ namespace projectFront
 
                 
                 string text1 = System.IO.File.ReadAllText("token.txt");
-                System.IO.File.Encrypt("token.txt");
+                //System.IO.File.Encrypt("token.txt");
                 Form menuForm = new mainMenu();
                 menuForm.Show();
                 this.Hide();

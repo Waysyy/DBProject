@@ -253,9 +253,11 @@ namespace projectFront
                     var response = await httpClient.SendAsync(request);
                     var t = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                    { MessageBox.Show("У вас недостаточно прав"); }
+                    { MessageBox.Show("У вас недостаточно прав");
+                        return;
+                    }
                     if (response.StatusCode == System.Net.HttpStatusCode.Created)
-                    { MessageBox.Show("Готово"); }
+                    { MessageBox.Show("Готово");  return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
 
@@ -295,9 +297,9 @@ namespace projectFront
                     var response = await httpClient.SendAsync(request);
 
                     if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                    { MessageBox.Show("У вас недостаточно прав"); }
+                    { MessageBox.Show("У вас недостаточно прав");  return;}
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                    { MessageBox.Show("Готово"); }
+                    { MessageBox.Show("Готово");  return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
 
@@ -317,9 +319,9 @@ namespace projectFront
                     var response = await httpClient.SendAsync(request);
 
                     if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                    { MessageBox.Show("У вас недостаточно прав"); }
+                    { MessageBox.Show("У вас недостаточно прав");  return;}
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                    { MessageBox.Show("Готово"); }
+                    { MessageBox.Show("Готово");  return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
 
