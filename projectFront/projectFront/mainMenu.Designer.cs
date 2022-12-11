@@ -43,7 +43,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(188, 74);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Cakes";
+            this.button1.Text = "Торты";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -54,7 +54,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(187, 74);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Orders";
+            this.button2.Text = "Заказы";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -65,18 +65,18 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(188, 74);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Personals";
+            this.button3.Text = "Персонал";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Segoe Print", 24F);
-            this.button4.Location = new System.Drawing.Point(216, 255);
+            this.button4.Location = new System.Drawing.Point(101, 255);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(159, 74);
+            this.button4.Size = new System.Drawing.Size(274, 74);
             this.button4.TabIndex = 3;
-            this.button4.Text = "Clients";
+            this.button4.Text = "Клиенты";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -85,9 +85,9 @@
             this.button5.Font = new System.Drawing.Font("Segoe Print", 24F);
             this.button5.Location = new System.Drawing.Point(426, 255);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(226, 74);
+            this.button5.Size = new System.Drawing.Size(272, 74);
             this.button5.TabIndex = 4;
-            this.button5.Text = "Ingredients";
+            this.button5.Text = "Ингредиенты";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 

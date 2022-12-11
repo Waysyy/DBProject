@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "auHrl/7XVlBJWcsDgKSfjW1knpbt7QOcX3EZRu8fvRcQtyx1NCZ6m0Q0T9jEyNxrqrsX4qAwEY1S+BidLxxbDg==",
+  "dgSpecHash": "t78Ko8WAkHmbczg4rw8DoLxBwxKBDP/BlgnIiLcsnCxL3G2aIjy6D5G4oEGJYxwyil3Cq+g6g3+nDKQbL4WTCA==",
   "success": true,
-  "projectFilePath": "D:\\DBProject\\project\\project\\project.csproj",
+  "projectFilePath": "A:\\GitProjects\\DBProject\\project\\project\\project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ntart\\.nuget\\packages\\aspnet.security.oauth.validation\\2.0.0\\aspnet.security.oauth.validation.2.0.0.nupkg.sha512",
     "C:\\Users\\ntart\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",

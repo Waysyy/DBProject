@@ -5138,19 +5138,19 @@
   },
   "packageFolders": {
     "C:\\Users\\ntart\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DBProject\\project\\project\\project.csproj",
+      "projectUniqueName": "A:\\GitProjects\\DBProject\\project\\project\\project.csproj",
       "projectName": "project",
-      "projectPath": "D:\\DBProject\\project\\project\\project.csproj",
+      "projectPath": "A:\\GitProjects\\DBProject\\project\\project\\project.csproj",
       "packagesPath": "C:\\Users\\ntart\\.nuget\\packages\\",
-      "outputPath": "D:\\DBProject\\project\\project\\obj\\",
+      "outputPath": "A:\\GitProjects\\DBProject\\project\\project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\ntart\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5236,7 +5236,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

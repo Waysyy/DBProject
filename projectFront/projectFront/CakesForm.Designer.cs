@@ -50,22 +50,20 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(771, 185);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(578, 150);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(591, 522);
+            this.dataGridView1.Size = new System.Drawing.Size(443, 424);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // getInfoId
             // 
             this.getInfoId.Font = new System.Drawing.Font("Segoe Print", 15.75F);
-            this.getInfoId.Location = new System.Drawing.Point(16, 169);
-            this.getInfoId.Margin = new System.Windows.Forms.Padding(4);
+            this.getInfoId.Location = new System.Drawing.Point(12, 137);
             this.getInfoId.Name = "getInfoId";
-            this.getInfoId.Size = new System.Drawing.Size(621, 66);
+            this.getInfoId.Size = new System.Drawing.Size(466, 54);
             this.getInfoId.TabIndex = 1;
             this.getInfoId.Text = "Получить информацию о торте по id";
             this.getInfoId.UseVisualStyleBackColor = true;
@@ -74,10 +72,9 @@
             // getInfo
             // 
             this.getInfo.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.getInfo.Location = new System.Drawing.Point(16, 15);
-            this.getInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.getInfo.Location = new System.Drawing.Point(12, 12);
             this.getInfo.Name = "getInfo";
-            this.getInfo.Size = new System.Drawing.Size(621, 74);
+            this.getInfo.Size = new System.Drawing.Size(466, 60);
             this.getInfo.TabIndex = 2;
             this.getInfo.Text = "Получить информацию о всех тортах";
             this.getInfo.UseVisualStyleBackColor = true;
@@ -86,10 +83,9 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(16, 96);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(12, 78);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(621, 65);
+            this.button3.Size = new System.Drawing.Size(466, 53);
             this.button3.TabIndex = 3;
             this.button3.Text = "Изменить информацию о торте по id";
             this.button3.UseVisualStyleBackColor = true;
@@ -98,10 +94,9 @@
             // deleteInfoId
             // 
             this.deleteInfoId.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteInfoId.Location = new System.Drawing.Point(16, 242);
-            this.deleteInfoId.Margin = new System.Windows.Forms.Padding(4);
+            this.deleteInfoId.Location = new System.Drawing.Point(12, 197);
             this.deleteInfoId.Name = "deleteInfoId";
-            this.deleteInfoId.Size = new System.Drawing.Size(621, 70);
+            this.deleteInfoId.Size = new System.Drawing.Size(466, 57);
             this.deleteInfoId.TabIndex = 4;
             this.deleteInfoId.Text = "Удалить информацию о торте по id";
             this.deleteInfoId.UseVisualStyleBackColor = true;
@@ -110,33 +105,30 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe Print", 15.75F);
-            this.textBox1.Location = new System.Drawing.Point(1095, 30);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(821, 24);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(327, 54);
+            this.textBox1.Size = new System.Drawing.Size(246, 45);
             this.textBox1.TabIndex = 5;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // postInfo
             // 
             this.postInfo.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.postInfo.Location = new System.Drawing.Point(16, 320);
-            this.postInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.postInfo.Location = new System.Drawing.Point(12, 260);
             this.postInfo.Name = "postInfo";
-            this.postInfo.Size = new System.Drawing.Size(621, 70);
+            this.postInfo.Size = new System.Drawing.Size(466, 57);
             this.postInfo.TabIndex = 7;
-            this.postInfo.Text = "Добавить информацию о торте";
+            this.postInfo.Text = "Добавить запись о новом торте";
             this.postInfo.UseVisualStyleBackColor = true;
             this.postInfo.Click += new System.EventHandler(this.postInfo_Click);
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(33, 462);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView2.Location = new System.Drawing.Point(25, 375);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(572, 70);
+            this.dataGridView2.Size = new System.Drawing.Size(429, 57);
             this.dataGridView2.TabIndex = 8;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -144,10 +136,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 15.75F);
-            this.label2.Location = new System.Drawing.Point(287, 414);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(215, 336);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(416, 47);
+            this.label2.Size = new System.Drawing.Size(323, 36);
             this.label2.TabIndex = 9;
             this.label2.Text = "Добавить/изменить тут ";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -156,10 +147,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe Print", 15.75F);
-            this.label3.Location = new System.Drawing.Point(613, 462);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(460, 375);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 47);
+            this.label3.Size = new System.Drawing.Size(78, 36);
             this.label3.TabIndex = 10;
             this.label3.Text = "<----";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -168,10 +158,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe Print", 15.75F);
-            this.label4.Location = new System.Drawing.Point(940, 127);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(705, 103);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(250, 47);
+            this.label4.Size = new System.Drawing.Size(194, 36);
             this.label4.TabIndex = 11;
             this.label4.Text = "Табличка вывода";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -180,10 +169,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe Print", 15.75F);
-            this.label5.Location = new System.Drawing.Point(736, 30);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(552, 24);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(338, 47);
+            this.label5.Size = new System.Drawing.Size(263, 36);
             this.label5.TabIndex = 12;
             this.label5.Text = "Сюда вводить ID --->";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -191,10 +179,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(71, 635);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(53, 516);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(231, 58);
+            this.button1.Size = new System.Drawing.Size(173, 47);
             this.button1.TabIndex = 14;
             this.button1.Text = "Добавить";
             this.button1.UseVisualStyleBackColor = true;
@@ -203,10 +190,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(71, 556);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(53, 452);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(231, 58);
+            this.button2.Size = new System.Drawing.Size(173, 47);
             this.button2.TabIndex = 15;
             this.button2.Text = "Изменить";
             this.button2.UseVisualStyleBackColor = true;
@@ -215,10 +201,9 @@
             // clearButton
             // 
             this.clearButton.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.clearButton.Location = new System.Drawing.Point(400, 583);
-            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
+            this.clearButton.Location = new System.Drawing.Point(300, 474);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(276, 79);
+            this.clearButton.Size = new System.Drawing.Size(207, 64);
             this.clearButton.TabIndex = 16;
             this.clearButton.Text = "Очистить";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -226,9 +211,9 @@
             // 
             // CakesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1493, 786);
+            this.ClientSize = new System.Drawing.Size(1120, 639);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -244,7 +229,6 @@
             this.Controls.Add(this.getInfo);
             this.Controls.Add(this.getInfoId);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CakesForm";
             this.Text = "CakesForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
