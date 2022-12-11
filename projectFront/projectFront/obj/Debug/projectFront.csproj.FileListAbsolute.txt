@@ -497,3 +497,4 @@ D:\DBProject\projectFront\projectFront\obj\Debug\projectFront.csproj.CoreCompile
 D:\DBProject\projectFront\projectFront\obj\Debug\projectFront.csproj.CopyComplete
 D:\DBProject\projectFront\projectFront\obj\Debug\projectFront.exe
 D:\DBProject\projectFront\projectFront\obj\Debug\projectFront.pdb
+D:\DBProject\projectFront\projectFront\obj\Debug\projectFront.csproj.SuggestedBindingRedirects.cache

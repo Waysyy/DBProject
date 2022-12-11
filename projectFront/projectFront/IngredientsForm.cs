@@ -19,16 +19,7 @@ namespace projectFront
     public partial class IngredientsForm : Form
     {
         bool buttonChangeCheck = false;
-        public bool checkMistakesID()
-        {
-            if (textBox1.Text == String.Empty)
-            {
-                MessageBox.Show("Кажется вы забыли заполнить поле ID");
-                return false;
-            }
-            else
-                return true;
-        }
+        MistakeChecker mistakes = new MistakeChecker();
         public bool CheckDatagrid()
         {
             bool check = false;
@@ -84,12 +75,12 @@ namespace projectFront
         {
             Form thisForm = Application.OpenForms[1];
             thisForm.Show();
-            Application.Exit();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (buttonChangeCheck == true && CheckDatagrid() == true)
+            if ( CheckDatagrid() == true)
             {
                 
                 Ingredients ingredients = new Ingredients();
@@ -103,14 +94,16 @@ namespace projectFront
 
 
             }
-            else
-                MessageBox.Show("Вы забыли нажать кнопку <<изменить по id>>");
+            if (dataGridView2 == null)
+            { MessageBox.Show("Нет данных для изменения"); }
+            //else
+            //MessageBox.Show("Вы забыли нажать кнопку <<изменить по id>>");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
 
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
 
                 buttonChangeCheck = true;
@@ -122,28 +115,40 @@ namespace projectFront
 
 
             }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
+            }
         }
 
         private void getInfoId_Click(object sender, EventArgs e)
         {
 
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
 
                 string token = System.IO.File.ReadAllText("token.txt");
 
                 DeserilizeNotArr(GetID(token, textBox1.Text));
             }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
+            }
         }
 
         private void deleteInfoId_Click(object sender, EventArgs e)
         {
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
                 string token = System.IO.File.ReadAllText("token.txt");
 
                 DeleteId(token, textBox1.Text);
 
+            }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
             }
         }
 
@@ -163,15 +168,17 @@ namespace projectFront
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            if (CheckDatagrid() == true)
+            {
+                Ingredients ingredients = new Ingredients();
+                ingredients.Id = "";
+                ingredients.Name = (string)dataGridView2[1, 0].Value;
+                ingredients.ExplorationDate = (DateTime)dataGridView2[2, 0].Value;
+                ingredients.InStock = (string)dataGridView2[3, 0].Value;
 
-            Ingredients ingredients = new Ingredients();
-            ingredients.Id = "";
-            ingredients.Name = (string)dataGridView2[1, 0].Value;
-            ingredients.ExplorationDate = (DateTime)dataGridView2[2, 0].Value;
-            ingredients.InStock = (string)dataGridView2[3, 0].Value;
-
-            string token = System.IO.File.ReadAllText("token.txt");
-            Post(token, ingredients);
+                string token = System.IO.File.ReadAllText("token.txt");
+                Post(token, ingredients);
+            }
         }
         static string Get(string token)
         {
@@ -254,6 +261,8 @@ namespace projectFront
                     { MessageBox.Show("У вас недостаточно прав");  return;}
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     { MessageBox.Show("Готово");  return; }
+                    if (response.StatusCode == System.Net.HttpStatusCode.MethodNotAllowed)
+                    { MessageBox.Show("Проблемы с ID"); return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
                 }
@@ -286,11 +295,14 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<List<Ingredients>>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    dataGridView1.AutoGenerateColumns = true;
-                    dataGridView1.DataSource = jobj;
+                    var jobj = JsonConvert.DeserializeObject<List<Ingredients>>(json);
+                    if (jobj != null)
+                    {
+                        dataGridView1.AutoGenerateColumns = true;
+                        dataGridView1.DataSource = jobj;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
@@ -299,13 +311,16 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<Ingredients>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    List<Ingredients> listRes = new List<Ingredients>();
-                    listRes.Add(jobj);
-                    dataGridView1.AutoGenerateColumns = true;
-                    dataGridView1.DataSource = listRes;
+                    var jobj = JsonConvert.DeserializeObject<Ingredients>(json);
+                    if (jobj != null)
+                    {
+                        List<Ingredients> listRes = new List<Ingredients>();
+                        listRes.Add(jobj);
+                        dataGridView1.AutoGenerateColumns = true;
+                        dataGridView1.DataSource = listRes;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
@@ -315,13 +330,16 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<Ingredients>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    List<Ingredients> listRes = new List<Ingredients>();
-                    listRes.Add(jobj);
-                    dataGridView2.AutoGenerateColumns = true;
-                    dataGridView2.DataSource = listRes;
+                    var jobj = JsonConvert.DeserializeObject<Ingredients>(json);
+                    if (jobj != null)
+                    {
+                        List<Ingredients> listRes = new List<Ingredients>();
+                        listRes.Add(jobj);
+                        dataGridView2.AutoGenerateColumns = true;
+                        dataGridView2.DataSource = listRes;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }

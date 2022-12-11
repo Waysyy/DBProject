@@ -18,22 +18,13 @@ namespace projectFront
     public partial class PersonalsForm : Form
     {
         bool buttonChangeCheck = false;
-        public bool checkMistakesID()
-        {
-            if (textBox1.Text == String.Empty)
-            {
-                MessageBox.Show("Кажется вы забыли заполнить поле ID");
-                return false;
-            }
-            else
-                return true;
-        }
+        MistakeChecker mistakes = new MistakeChecker();
         public bool CheckDatagrid()
         {
             bool check = false;
             for (int j = 0; j < dataGridView2.RowCount; ++j)
             {
-                for (int i = 1; i < dataGridView2.ColumnCount; ++i)
+                for (int i = 1; i < dataGridView2.ColumnCount-1; ++i)
                 {
                     if (Convert.ToString(dataGridView2[i, j].Value) == string.Empty || Convert.ToString(dataGridView2[i, j].Value) == " ")
                     {
@@ -82,13 +73,13 @@ namespace projectFront
         {
             Form thisForm = Application.OpenForms[1];
             thisForm.Show();
-            Application.Exit();
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
-            if (buttonChangeCheck == true && CheckDatagrid() == true)
+            if (CheckDatagrid() == true)
             {
                 Personals personals = new Personals();
                 personals.Id = textBox1.Text;
@@ -103,14 +94,16 @@ namespace projectFront
 
 
             }
-            else
-                MessageBox.Show("Вы забыли нажать кнопку <<изменить по id>>");
+            if (dataGridView2 == null)
+            { MessageBox.Show("Нет данных для изменения"); }
+            /*else
+                //MessageBox.Show("Вы забыли нажать кнопку <<изменить по id>>");*/
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
 
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
 
                 buttonChangeCheck = true;
@@ -122,30 +115,42 @@ namespace projectFront
 
 
             }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
+            }
 
         }
 
         private void getInfoId_Click(object sender, EventArgs e)
         {
 
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
 
                 string token = System.IO.File.ReadAllText("token.txt");
 
                 DeserilizeNotArr(GetID(token, textBox1.Text));
             }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
+            }
         }
 
         private void deleteInfoId_Click(object sender, EventArgs e)
         {
 
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
                 string token = System.IO.File.ReadAllText("token.txt");
 
                 DeleteId(token, textBox1.Text);
 
+            }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
             }
         }
 
@@ -167,17 +172,19 @@ namespace projectFront
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            if (CheckDatagrid() == true && dataGridView2[4, 0].Value.GetType() == typeof(int) && (int)dataGridView2[4, 0].Value > 0)
+            {
+                Personals personals = new Personals();
+                personals.Id = "";
+                personals.Name = (string)dataGridView2[1, 0].Value;
+                personals.Lastname = (string)dataGridView2[2, 0].Value;
+                personals.JobTitle = (string)dataGridView2[3, 0].Value;
+                personals.Salary = (int)dataGridView2[4, 0].Value;
+                personals.Manager = (string)dataGridView2[5, 0].Value;
 
-            Personals personals = new Personals();
-            personals.Id = "";
-            personals.Name = (string)dataGridView2[1, 0].Value;
-            personals.Lastname = (string)dataGridView2[2, 0].Value;
-            personals.JobTitle = (string)dataGridView2[3, 0].Value;
-            personals.Salary = (int)dataGridView2[4, 0].Value;
-            personals.Manager = (string)dataGridView2[5, 0].Value;
-
-            string token = System.IO.File.ReadAllText("token.txt");
-            Post(token, personals);
+                string token = System.IO.File.ReadAllText("token.txt");
+                Post(token, personals);
+            }
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -295,6 +302,8 @@ namespace projectFront
                     { MessageBox.Show("У вас недостаточно прав");  return;}
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     { MessageBox.Show("Готово");  return; }
+                    if (response.StatusCode == System.Net.HttpStatusCode.MethodNotAllowed)
+                    { MessageBox.Show("Проблемы с ID"); return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
 
@@ -328,11 +337,14 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<List<Personals>>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    dataGridView1.AutoGenerateColumns = true;
-                    dataGridView1.DataSource = jobj;
+                    var jobj = JsonConvert.DeserializeObject<List<Personals>>(json);
+                    if (jobj != null)
+                    {
+                        dataGridView1.AutoGenerateColumns = true;
+                        dataGridView1.DataSource = jobj;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
@@ -341,13 +353,16 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<Personals>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    List<Personals> listRes = new List<Personals>();
-                    listRes.Add(jobj);
-                    dataGridView1.AutoGenerateColumns = true;
-                    dataGridView1.DataSource = listRes;
+                    var jobj = JsonConvert.DeserializeObject<Personals>(json);
+                    if (jobj != null)
+                    {
+                        List<Personals> listRes = new List<Personals>();
+                        listRes.Add(jobj);
+                        dataGridView1.AutoGenerateColumns = true;
+                        dataGridView1.DataSource = listRes;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
@@ -357,13 +372,16 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<Personals>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    List<Personals> listRes = new List<Personals>();
-                    listRes.Add(jobj);
-                    dataGridView2.AutoGenerateColumns = true;
-                    dataGridView2.DataSource = listRes;
+                    var jobj = JsonConvert.DeserializeObject<Personals>(json);
+                    if (jobj != null)
+                    {
+                        List<Personals> listRes = new List<Personals>();
+                        listRes.Add(jobj);
+                        dataGridView2.AutoGenerateColumns = true;
+                        dataGridView2.DataSource = listRes;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }

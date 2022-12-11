@@ -32,10 +32,10 @@ namespace projectFront
 {
     public partial class AuthForm : Form
     {
-        
-        
 
-        
+
+        MistakeChecker mistakes = new MistakeChecker();
+
         public AuthForm()
         {
             InitializeComponent();

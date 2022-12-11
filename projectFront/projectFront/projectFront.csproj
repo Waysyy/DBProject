@@ -595,6 +595,7 @@
     <Compile Include="mainMenu.Designer.cs">
       <DependentUpon>mainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="MistakeChecker.cs" />
     <Compile Include="Models\Cakes.cs" />
     <Compile Include="Models\Clients.cs" />
     <Compile Include="Models\DBStettings.cs" />

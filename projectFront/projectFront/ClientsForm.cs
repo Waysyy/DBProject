@@ -18,16 +18,7 @@ namespace projectFront
     public partial class ClientsForm : Form
     {
         bool buttonChangeCheck = false;
-        public bool checkMistakesID()
-        {
-            if (textBox1.Text == String.Empty)
-            {
-                MessageBox.Show("Кажется вы забыли заполнить поле ID");
-                return false;
-            }
-            else
-                return true;
-        }
+        MistakeChecker mistakes = new MistakeChecker();
         public bool CheckDatagrid()
         {
             bool check = false;
@@ -51,7 +42,7 @@ namespace projectFront
         {
             InitializeComponent();
         }
-        
+
 
         public void Cleaner()
         {
@@ -60,7 +51,7 @@ namespace projectFront
             dataGridView2.DataSource = new object();
         }
 
-        
+
         private void getInfo_Click(object sender, EventArgs e)
         {
 
@@ -82,16 +73,16 @@ namespace projectFront
         {
             Form thisForm = Application.OpenForms[1];
             thisForm.Show();
-            
+
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (buttonChangeCheck == true && CheckDatagrid() == true)
+            if ( CheckDatagrid() == true)
             {
-                
-                
+
+
                 Clients clients = new Clients();
                 clients.Id = textBox1.Text;
                 clients.Id = "";
@@ -103,13 +94,15 @@ namespace projectFront
 
 
             }
-            else
-                MessageBox.Show("Вы забыли нажать кнопку <<изменить по id>>");
+            if (dataGridView2 == null)
+            { MessageBox.Show("Нет данных для изменения"); }
+            // else
+            ////MessageBox.Show("Вы забыли нажать кнопку <<изменить по id>>");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
 
                 buttonChangeCheck = true;
@@ -121,44 +114,58 @@ namespace projectFront
 
 
             }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
+            }
 
         }
 
         private void getInfoId_Click(object sender, EventArgs e)
         {
 
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
 
                 string token = System.IO.File.ReadAllText("token.txt");
 
                 DeserilizeNotArr(GetID(token, textBox1.Text));
             }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
+            }
         }
 
         private void deleteInfoId_Click(object sender, EventArgs e)
         {
 
-            if (checkMistakesID() == true)
+            if (mistakes.checkMistakesID(textBox1.Text).isError == true)
             {
                 string token = System.IO.File.ReadAllText("token.txt");
 
                 DeleteId(token, textBox1.Text);
 
             }
+            else
+            {
+                MessageBox.Show(mistakes.checkMistakesID(textBox1.Text).errorMessage);
+            }
         }
 
         private void postInfo_Click(object sender, EventArgs e)
         {
-            //Cleaner();
-            List<Clients> postList = new List<Clients>();
-            Clients clients = new Clients();
-            clients.Id = "Automatic";
-            clients.Name = "";
-            clients.Lastname = "";
+            
+                List<Clients> postList = new List<Clients>();
+                Clients clients = new Clients();
+                clients.Id = "Automatic";
+                clients.Name = "";
+                clients.Lastname = "";
 
-            postList.Add(clients);
-            dataGridView2.DataSource = postList;
+                postList.Add(clients);
+                dataGridView2.DataSource = postList;
+            
+            
 
         }
 
@@ -169,14 +176,17 @@ namespace projectFront
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(CheckDatagrid())
+            {
+                Clients clients = new Clients();
+                clients.Id = "";
+                clients.Name = (string)dataGridView2[1, 0].Value;
+                clients.Lastname = (string)dataGridView2[2, 0].Value;
 
-            Clients clients = new Clients();
-            clients.Id = "";
-            clients.Name = (string)dataGridView2[1, 0].Value;
-            clients.Lastname = (string)dataGridView2[2, 0].Value;
-
-            string token = System.IO.File.ReadAllText("token.txt");
-            Post(token, clients);
+                string token = System.IO.File.ReadAllText("token.txt");
+                Post(token, clients);
+            }
+            
         }
         static string Get(string token)
         {
@@ -209,15 +219,15 @@ namespace projectFront
                     request.Headers.TryAddWithoutValidation("accept", "*/*");
                     request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
 
-                    request.Content = new StringContent("{\n  \"id\": \"\",\n  \"name\": \""+ client.Name+ "\",\n  \"lastname\": \""+ client.Lastname + "\"\n}");
+                    request.Content = new StringContent("{\n  \"id\": \"\",\n  \"name\": \"" + client.Name + "\",\n  \"lastname\": \"" + client.Lastname + "\"\n}");
                     request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
                     var response = await httpClient.SendAsync(request);
                     var t = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                    { MessageBox.Show("У вас недостаточно прав");  return;}
+                    { MessageBox.Show("У вас недостаточно прав"); return; }
                     if (response.StatusCode == System.Net.HttpStatusCode.Created)
-                    { MessageBox.Show("Готово");  return; }
+                    { MessageBox.Show("Готово"); return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
 
@@ -250,15 +260,17 @@ namespace projectFront
                     request.Headers.TryAddWithoutValidation("accept", "*/*");
                     request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + token);
 
-                    request.Content = new StringContent("{\n  \"id\": \"" + id + "\",\n  \"name\": \""+ client.Name+ "\",\n  \"lastname\": \""+ client.Lastname + "\"\n}");
+                    request.Content = new StringContent("{\n  \"id\": \"" + id + "\",\n  \"name\": \"" + client.Name + "\",\n  \"lastname\": \"" + client.Lastname + "\"\n}");
                     request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
                     var response = await httpClient.SendAsync(request);
 
                     if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                    { MessageBox.Show("У вас недостаточно прав");  return;}
+                    { MessageBox.Show("У вас недостаточно прав"); return; }
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                    { MessageBox.Show("Готово");  return; }
+                    { MessageBox.Show("Готово"); return; }
+                    if (response.StatusCode == System.Net.HttpStatusCode.MethodNotAllowed)
+                    { MessageBox.Show("Проблемы с ID"); return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
 
@@ -278,9 +290,9 @@ namespace projectFront
                     var response = await httpClient.SendAsync(request);
 
                     if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                    { MessageBox.Show("У вас недостаточно прав");  return;}
+                    { MessageBox.Show("У вас недостаточно прав"); return; }
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                    { MessageBox.Show("Готово");  return; }
+                    { MessageBox.Show("Готово"); return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
 
@@ -292,11 +304,14 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<List<Clients>>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    dataGridView1.AutoGenerateColumns = true;
-                    dataGridView1.DataSource = jobj;
+                    var jobj = JsonConvert.DeserializeObject<List<Clients>>(json);
+                    if (jobj != null)
+                    {
+                        dataGridView1.AutoGenerateColumns = true;
+                        dataGridView1.DataSource = jobj;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
@@ -305,13 +320,16 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<Clients>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    List<Clients> listRes = new List<Clients>();
-                    listRes.Add(jobj);
-                    dataGridView1.AutoGenerateColumns = true;
-                    dataGridView1.DataSource = listRes;
+                    var jobj = JsonConvert.DeserializeObject<Clients>(json);
+                    if (jobj != null)
+                    {
+                        List<Clients> listRes = new List<Clients>();
+                        listRes.Add(jobj);
+                        dataGridView1.AutoGenerateColumns = true;
+                        dataGridView1.DataSource = listRes;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
@@ -321,13 +339,16 @@ namespace projectFront
         {
             try
             {
-                var jobj = JsonConvert.DeserializeObject<Clients>(json);
-                if (jobj != null)
+                if (json != null)
                 {
-                    List<Clients> listRes = new List<Clients>();
-                    listRes.Add(jobj);
-                    dataGridView2.AutoGenerateColumns = true;
-                    dataGridView2.DataSource = listRes;
+                    var jobj = JsonConvert.DeserializeObject<Clients>(json);
+                    if (jobj != null)
+                    {
+                        List<Clients> listRes = new List<Clients>();
+                        listRes.Add(jobj);
+                        dataGridView2.AutoGenerateColumns = true;
+                        dataGridView2.DataSource = listRes;
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Ошибочка вышла \n"); }
