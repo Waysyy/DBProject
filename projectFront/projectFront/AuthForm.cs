@@ -87,11 +87,13 @@ namespace projectFront
                         {
                             token = token.Remove(0, 17);
                             token = token.Remove(token.Length - 21, 21);
+                            System.IO.File.WriteAllText("role.txt", "admin");
                         }
                         else
                         {
                             token = token.Remove(0, 17);
                             token = token.Remove(token.Length - 20, 20);
+                            System.IO.File.WriteAllText("role.txt", "user");
                         }
 
                         

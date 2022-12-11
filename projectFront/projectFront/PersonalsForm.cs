@@ -41,6 +41,19 @@ namespace projectFront
         public PersonalsForm()
         {
             InitializeComponent();
+            CheckRole checkRole = new CheckRole();
+            if (checkRole.RoleChecker() == "admin")
+            {
+                button3.Enabled = true;
+                deleteInfoId.Enabled = true;
+                postInfo.Enabled = true;
+            }
+            if (checkRole.RoleChecker() == "user")
+            {
+                button3.Enabled = false;
+                deleteInfoId.Enabled = false;
+                postInfo.Enabled = false;
+            }
         }
 
         

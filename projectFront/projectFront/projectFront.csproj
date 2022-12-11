@@ -577,6 +577,7 @@
     <Compile Include="CakesForm.Designer.cs">
       <DependentUpon>CakesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CheckRole.cs" />
     <Compile Include="ClientsForm.cs">
       <SubType>Form</SubType>
     </Compile>

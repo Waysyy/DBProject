@@ -18,8 +18,8 @@ namespace projectFront
     {
         MistakeChecker mistakes = new MistakeChecker();
         bool buttonChangeCheck = false;
-        
 
+        
 
         public bool CheckDatagrid()
         {
@@ -52,6 +52,19 @@ namespace projectFront
         public CakesForm()
         {
             InitializeComponent();
+            CheckRole checkRole = new CheckRole();
+            if (checkRole.RoleChecker() == "admin")
+            {
+                button3.Enabled = true;
+                deleteInfoId.Enabled = true;
+                postInfo.Enabled = true;
+            }
+            if (checkRole.RoleChecker() == "user")
+            {
+                button3.Enabled = false;
+                deleteInfoId.Enabled = false;
+                postInfo.Enabled = false;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
