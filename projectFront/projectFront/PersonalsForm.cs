@@ -36,6 +36,12 @@ namespace projectFront
                         check = true;
                 }
             }
+            if (dataGridView2.RowCount == 0)
+            {
+                check = false;
+                MessageBox.Show("Заполните все поля");
+
+            }
             return check;
         }
         public PersonalsForm()
@@ -198,6 +204,10 @@ namespace projectFront
                 string token = System.IO.File.ReadAllText("token.txt");
                 Post(token, personals);
             }
+            if (CheckDatagrid() == true && dataGridView2[4, 0].Value.GetType() == typeof(int) && (int)dataGridView2[4, 0].Value == 0)
+            {
+                MessageBox.Show("Зарплата не может быть 0");
+            }
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -339,6 +349,8 @@ namespace projectFront
                     { MessageBox.Show("У вас недостаточно прав");  return;}
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     { MessageBox.Show("Готово");  return; }
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    { MessageBox.Show("Готово"); return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
 

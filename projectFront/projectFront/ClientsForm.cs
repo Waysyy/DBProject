@@ -36,6 +36,12 @@ namespace projectFront
                         check = true;
                 }
             }
+            if (dataGridView2 == null)
+            {
+                check = false;
+                MessageBox.Show("Заполните все поля");
+
+            }
             return check;
         }
         public ClientsForm()
@@ -305,6 +311,8 @@ namespace projectFront
                     if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                     { MessageBox.Show("У вас недостаточно прав"); return; }
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    { MessageBox.Show("Готово"); return; }
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     { MessageBox.Show("Готово"); return; }
                     else
                     { MessageBox.Show("Ошибочка " + response.StatusCode); }
